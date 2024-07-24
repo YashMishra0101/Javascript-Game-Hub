@@ -1,7 +1,6 @@
-<h1 align="center"> Random-Script </h1>
+<h1 align="center"> Javascript-Game-Hub </h1>
 <h3 align="center">This Open-Source repository is about making Any Random things or tools which is helpful in someways</h3>
 
-visit All Tool: https://jaygajera17.github.io/Random-Script/
  
 ####  Open Source Instructions
 
@@ -35,11 +34,14 @@ visit All Tool: https://jaygajera17.github.io/Random-Script/
 | 10            | Random Group Maker |
 | 11            | Guess Random Word Game |
 
-### Preview
-  
-![Random-Script](https://github.com/jaygajera17/WDW_Project_CE038_CE042_CE119/blob/main/Image/readme.jpg)
 
-### Top Contributors
-<a href="https://github.com/jaygajera17/Random-Script/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=jaygajera17/Random-Script" />
-</a>
+## Contributing
+
+If you would like to contribute to this Employee Management System, please open an issue or submit a pull request. All contributions are welcome.
+
+## Contact 
+
+If you have any questions or suggestions, please feel free to contact me on:
+
+- LinkedIn: https://www.linkedin.com/in/yash-mishra-356280223
+- Twitter: https://twitter.com/YashRKMishra1
