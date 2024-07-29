@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.input-slider::-webkit-slider-thumb {
+    appearance: none;
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 50%;
+    background-color: #e0cd00;
+    cursor: pointer;
+}
+
+.input-slider::-webkit-slider-thumb:hover{
+    outline: 5px solid rgb(105, 0, 243);
+}
+  
+div label{
+    color: white;
+    font-weight: 600;
+    font-size: larger;
+    flex-basis: 90%;
+    font-size: 18px;
+}
+
+.option{
+    display: flex;
+}
+
+@media (max-width:320px){
+    .password-sub-container{
+      width: 19rem;
+    } 
+
+}

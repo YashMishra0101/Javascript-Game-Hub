@@ -1,117 +1,148 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Animated 3D Dice Roller Example</title>
-
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="dice.css" rel="stylesheet" type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-    <link href="dice2.css" rel="stylesheet" type="text/css" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coladco Learning Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-      *,
-      *:before,
-      *:after {
-        box-sizing: border-box;
-      }
-
-      html,
-      body {
-        height: 100%;
-      }
-
-      body {
-      display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background-image:linear-gradient(to right top,#b597f6,#439cfb);
-        margin: 0;
-        font-family: sans-serif;
-        background-size: cover;
-       
-      }
-      .btn {
-    width: 30%;
-    padding: 12px 0;
-    outline: none;
-    border: 2px solid #7c00cf;
-    border-radius: 5px;
-    background: #439cfb;
-    color: #fff;
-    transition: 0.3s;
-    margin: 0 0 25px 0;
-    box-shadow: 0 10px 25px -10px #439cfb;
-}
-.box{
-width: 60%;
-height: 100%;
-padding: 50px 15px;
-margin-top: 25px;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-background: #fff;
-box-shadow: 0 10px 25px -10px rgba(0,0,0,0.5);
-border-radius: 5px;
-/*padding-top: 30px;
-padding: 30px;*/
-
-}
-
-.box h2{
-margin-bottom: 36px;
-text-align: center;
-font-size: 36px;
-color: #015a96;
-font-family: sans-serif;
-
-}
-
-
-     
-      h1,p { color: #fff; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+        }
+        #dice {
+            font-size: 8rem; /* Increased size for better visibility */
+            background-color: #ffcccb; /* Changed dice color */
+            transition: transform 2s; /* Added transition for rotation */
+        }
+        @keyframes colorChange {
+            0% { color: #ff0000; }
+            25% { color: #00ff00; }
+            50% { color: #0000ff; }
+            75% { color: #ff00ff; }
+            100% { color: #ff0000; }
+        }
+        .dynamic-color {
+            animation: colorChange 5s infinite;
+        }
+        @keyframes rotateDice {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        .rotating {
+            animation: rotateDice 0.8s ease-out;
+        }
+        .disabled-button {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
     </style>
-  </head>
-  <body>
-      <div class="box">
-<h2>Animated 3D Dice Roller </h2>
-
-
-<font color="#015a96"
-font-family="sans-serif";>An animated virtual dice roller that allows you to roll dice for random numbers (from 1 to 6).</font>
-&nbsp;
-    <!-- Dice -->
-    <div class="dice__scene">
-      <div id="dice__cube" class="show-front">
-        <div class="dice__side dice__side--front"></div>
-    		<div class="dice__side dice__side--back"></div>
-    		<div class="dice__side dice__side--right"></div>
-    		<div class="dice__side dice__side--left"></div>
-    		<div class="dice__side dice__side--top"></div>
-    		<div class="dice__side dice__side--bottom"></div>
-      </div>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen">
+    <div class="text-center">
+        <h1 class="text-4xl font-bold mb-2 dynamic-color">Dice Game</h1>
+        <div id="emoji" class="text-4xl mb-4">😐</div>
+        <div class="flex flex-col items-center mb-6">
+            <div id="dice" class="flex items-center justify-center w-48 h-48 text-8xl border-4 border-gray-300 rounded-lg shadow-md cursor-pointer hover:bg-gray-200 transition transform hover:scale-110">
+                <i class="fas fa-dice-one"></i>
+            </div>
+            <input id="diceNumber" type="text" class="w-48 mt-4 p-2 border-2 border-gray-300 rounded-lg text-lg text-center" readonly placeholder="Dice Number">
+        </div>
+        <button id="rollButton" class="px-6 py-2 ml-3 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 flex items-center space-x-2">
+            <i class="fas fa-dice" aria-hidden="true"></i>
+            <span>Roll Dice</span>
+            <i class="fas fa-dice" aria-hidden="true"></i>
+        </button>
     </div>
-      
-<Style>
-  .dice__scene{width:70px;height:70px;-webkit-perspective:210px;perspective:210px}#dice__cube{position:relative;width:100%;height:100%;-webkit-transform-style:preserve-3d;transform-style:preserve-3d;-webkit-transform:translateZ(-35px);transform:translateZ(-35px);-webkit-transition:-webkit-transform ease;transition:-webkit-transform ease;transition:transform ease;transition:transform ease,-webkit-transform ease;-webkit-transition-duration:.5s;transition-duration:.5s}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){#dice__cube{-webkit-transform-style:flat;transform-style:flat;-webkit-transform:none!important;transform:none!important}}@-webkit-keyframes showSameFont{100%{-webkit-transform:translateZ(-35px) rotateY(360deg);transform:translateZ(-35px) rotateY(360deg)}}@keyframes showSameFont{100%{-webkit-transform:translateZ(-35px) rotateY(360deg);transform:translateZ(-35px) rotateY(360deg)}}@-webkit-keyframes showSameRight{100%{-webkit-transform:translateZ(-35px) rotateY(-450deg);transform:translateZ(-35px) rotateY(-450deg)}}@keyframes showSameRight{100%{-webkit-transform:translateZ(-35px) rotateY(-450deg);transform:translateZ(-35px) rotateY(-450deg)}}@-webkit-keyframes showSameBack{100%{-webkit-transform:translateZ(-35px) rotateY(-540deg);transform:translateZ(-35px) rotateY(-540deg)}}@keyframes showSameBack{100%{-webkit-transform:translateZ(-35px) rotateY(-540deg);transform:translateZ(-35px) rotateY(-540deg)}}@-webkit-keyframes showSameLeft{100%{-webkit-transform:translateZ(-35px) rotateY(450deg);transform:translateZ(-35px) rotateY(450deg)}}@keyframes showSameLeft{100%{-webkit-transform:translateZ(-35px) rotateY(450deg);transform:translateZ(-35px) rotateY(450deg)}}@-webkit-keyframes showSameTop{100%{-webkit-transform:translateZ(-35px) rotateX(-450deg);transform:translateZ(-35px) rotateX(-450deg)}}@keyframes showSameTop{100%{-webkit-transform:translateZ(-35px) rotateX(-450deg);transform:translateZ(-35px) rotateX(-450deg)}}@-webkit-keyframes showSameBottom{100%{-webkit-transform:translateZ(-35px) rotateX(450deg);transform:translateZ(-35px) rotateX(450deg)}}@keyframes showSameBottom{100%{-webkit-transform:translateZ(-35px) rotateX(450deg);transform:translateZ(-35px) rotateX(450deg)}}#dice__cube.show-front{-webkit-transform:translateZ(-35px) rotateY(0);transform:translateZ(-35px) rotateY(0)}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){#dice__cube.show-front .dice__side--front{display:block}}#dice__cube.show-front.show-same{-webkit-animation:showSameFont .5s ease;animation:showSameFont .5s ease}#dice__cube.show-right{-webkit-transform:translateZ(-35px) rotateY(-90deg);transform:translateZ(-35px) rotateY(-90deg)}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){#dice__cube.show-right .dice__side--right{display:block}}#dice__cube.show-right.show-same{-webkit-animation:showSameRight .5s ease;animation:showSameRight .5s ease}#dice__cube.show-back{-webkit-transform:translateZ(-35px) rotateY(-180deg);transform:translateZ(-35px) rotateY(-180deg)}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){#dice__cube.show-back .dice__side--back{display:block}}#dice__cube.show-back.show-same{-webkit-animation:showSameBack .5s ease;animation:showSameBack .5s ease}#dice__cube.show-left{-webkit-transform:translateZ(-35px) rotateY(90deg);transform:translateZ(-35px) rotateY(90deg)}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){#dice__cube.show-left .dice__side--left{display:block}}#dice__cube.show-left.show-same{-webkit-animation:showSameLeft .5s ease;animation:showSameLeft .5s ease}#dice__cube.show-top{-webkit-transform:translateZ(-35px) rotateX(-90deg);transform:translateZ(-35px) rotateX(-90deg)}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){#dice__cube.show-top .dice__side--top{display:block}}#dice__cube.show-top.show-same{-webkit-animation:showSameTop .5s ease;animation:showSameTop .5s ease}#dice__cube.show-bottom{-webkit-transform:translateZ(-35px) rotateX(90deg);transform:translateZ(-35px) rotateX(90deg)}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){#dice__cube.show-bottom .dice__side--bottom{display:block}}#dice__cube.show-bottom.show-same{-webkit-animation:showSameBottom .5s ease;animation:showSameBottom .5s ease}.dice__side{position:absolute;width:100%;height:100%;background-size:100% auto;background-position:center;background-repeat:no-repeat;background-color:#fff;box-shadow:inset 0 0 7px rgba(0,0,0,.1);-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.dice__side{display:none;-webkit-transform:none!important;transform:none!important}}.dice__side--front{-webkit-transform:rotateY(0) translateZ(35px);transform:rotateY(0) translateZ(35px);background-image:url(assets/images/dice-1.png)}.dice__side--back{-webkit-transform:rotateY(180deg) translateZ(35px);transform:rotateY(180deg) translateZ(35px);background-image:url(assets/images/dice-6.png)}.dice__side--right{-webkit-transform:rotateY(90deg) translateZ(35px);transform:rotateY(90deg) translateZ(35px);background-image:url(assets/images/dice-4.png)}.dice__side--left{-webkit-transform:rotateY(-90deg) translateZ(35px);transform:rotateY(-90deg) translateZ(35px);background-image:url(assets/images/dice-3.png)}.dice__side--top{-webkit-transform:rotateX(90deg) translateZ(35px);transform:rotateX(90deg) translateZ(35px);background-image:url(assets/images/dice-2.png)}.dice__side--bottom{-webkit-transform:rotateX(-90deg) translateZ(35px);transform:rotateX(-90deg) translateZ(35px);background-image:url(assets/images/dice-5.png)}
-</Style>
-    <audio preload="auto" id="dice__audio">
-    	<source src="./assets/sounds/dice-sound.mp3"></source>
-    </audio>
-    <!-- /Dice -->
+    <p
+    style="
+      color: rgb(200, 232, 244);
+      margin-top:1rem;
+      text-align: center;
+      font-size: 1.3rem;
+      padding: 10px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman',
+        serif;
+      border-radius: 5px;
+    "
+  >
+    Made with
+    <span
+      style="
+        font-weight: 600;
+        font-size: 1.8rem;
+        animation: colorChangebelow 3s infinite;
+      "
+      >Coladco</span
+    ><span style="font-weight: 600; font-size: 1.5rem">🔥</span>
+  </p>
 
-&nbsp;
+  <style>
+    @keyframes colorChangebelow {
+      0% {
+        color: #ffffff;
+      }
+      50% {
+        color: #f3b712;
+      }
+      100% {
+        color: #cb571d;
+      }
+    }
+  </style>
+    <audio id="diceSound" src="./assets/sounds/dice-roll.mp3"></audio>
 
-    <button class="btn" id="dice__btn" >Roll the dice</button></div>
-    &nbsp; 
-<pre    style="font-size: 19px" >                                                                     made with &#10084;&#65039; by random-script</pre>
-   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script> </script></script> 
-    <script src="Script.js/dice.js"></script>
-    <script type="text/javascript">
+    <script>
+        const dice = document.getElementById('dice');
+        const rollButton = document.getElementById('rollButton');
+        const diceNumber = document.getElementById('diceNumber');
+        const diceSound = document.getElementById('diceSound');
+        const emoji = document.getElementById('emoji');
 
+        const emojis = {
+            1: '😞',
+            2: '😕',
+            3: '😐',
+            4: '😊',
+            5: '😁',
+            6: '😎'
+        };
 
- 
- 
+        function getRandomDiceNumber() {
+            return Math.floor(Math.random() * 6) + 1;
+        }
+
+        function updateDiceIcon(number) {
+            const diceIcons = [
+                'fas fa-dice-one',
+                'fas fa-dice-two',
+                'fas fa-dice-three',
+                'fas fa-dice-four',
+                'fas fa-dice-five',
+                'fas fa-dice-six'
+            ];
+            dice.innerHTML = `<i class="${diceIcons[number - 1]}"></i>`;
+        }
+
+        function rollDice() {
+            rollButton.classList.add('disabled-button'); // Disable the button
+            dice.classList.add('rotating');
+            diceSound.currentTime = 0; // Reset the sound
+            diceSound.play();
+
+            setTimeout(() => {
+                const randomNumber = getRandomDiceNumber();
+                updateDiceIcon(randomNumber);
+                diceNumber.value = randomNumber;
+                emoji.innerText = emojis[randomNumber];
+                dice.classList.remove('rotating');
+                rollButton.classList.remove('disabled-button'); // Re-enable the button
+            }, 800); // Wait for 0.8 seconds before displaying the final result
+        }
+
+        rollButton.addEventListener('click', rollDice);
+    </script>
+</body>
+</html>

@@ -1,286 +1,270 @@
 <!DOCTYPE html>
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"
-        rel="stylesheet">
-    <title>Random choice picker</title>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coladco Learing Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Titillium Web', sans-serif;
-        }
-
-        #button:hover {
-            color: white;
-            background-color: black;
-        }
-
-        .navbar {
-            background-color: black;
-            z-index: 999;
-        }
-
-        .navbar::before {
-            content: "";
-            position: absolute;
-            top: 0%;
-            bottom: 0%;
-            left: 0;
-            right: 0;
-            z-index: -1;
-        }
-
-        .nav-item a {
-            color: white;
-            font-weight: 500;
-            font-size: 17px;
-            transition: 0.5s ease;
-        }
-
-        .nav-item a:hover {
-            color: rgb(0, 195, 255);
-            border-bottom: 1px solid rgb(0, 195, 255);
-        }
-
-        .navbar-brand {
-            color: white;
-            font-weight: 600;
-            font-size: 20px;
-        }
-
-        .nav-item {
-            margin-right: 20px;
-        }
-
-        .center {
-            width: 100vw;
-            height: 100vh;
-            background-color: #f9c1b1;
-            background-image: linear-gradient(315deg, #f9c1b1 0%, #fb8085 74%);
-        }
-
-        .box {
-            width: 60%;
-            height: 85%;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            background: #fff;
-            box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.5);
-            border-radius: 5px;
-            margin-top: 10vh;
-        }
-
-        .box2 {
-            margin-top: -10px;
-        }
-
-        #toast {
-            position: absolute;
-            bottom: 0;
-            border-radius: 5px;
-            padding: 15px 50px;
-            background: black;
-            opacity: 0;
-            color: white;
-            font-weight: 500;
-            visibility: hidden;
-            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-            transition: 0.3s;
-        }
-
-        #toast.show {
-            visibility: visible;
-            opacity: 1;
-            z-index: 1000;
-            bottom: 50px;
-        }
-
-        .gbtn {
-            margin: 10px 25px;
-            font-size: 1.2rem;
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        }
-
-        .gbtn:hover {
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        }
-    </style>
-</head>
-
-<header>
-    <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark" data-aos="fade-in">
-        <div class="container">
-            <a class="navbar-brand" href="#">Coladco</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" style="margin-right: 30px;" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Exit</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> -->
-</header>
-
-<section class="center d-flex align-items-center justify-content-center">
-    <div class="box bg-light" data-aos="zoom-in-down">
-        <div class="box2">
-            <div class="row">
-                <div class="col-lg-12 md-6 text-center">
-                    <h1>Random Choice Picker</h1>
-                    <h2>Enter choices</h2>
-                    <p>Enter each value on a new line. Blank lines will be ignored.</p>
-                    <textarea id="values" class="form-control" rows="7"
-                        placeholder="choice 1&#10;choice 2&#10;choice 3"></textarea>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 md-6 text-center mt-2">
-                <h2>Your choice is</h2>
-                <p id="instructions"><span class="label label-warning">You have to enter some values first!</span>
-                </p>
-                <div id="results"></div>
-                <div id="chooser" class="text-center">
-                    <hr>
-                                     <button type="button" class="btn gbtn btn-dark bg-dark text-white">Pick from list</button>
-                    <button class="btn gbtn btn-dark bg-dark text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">more info</button>
-                    
-                    
-                </div>
-                
-                <div class="offcanvas offcanvas-start" data-bs-scroll="false" data-bs-backdrop="false" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-                    <div class="offcanvas-header">
-                      <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Use & information</h5>
-                      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <div class="p">
-                        <p>	&#x27A1;Have a tough choice to make? Can't make up your mind between multiple choices?
-                            <br><BR>
-                            &#x27A1;Let the random choice generator make a quick decision for you by picking a choice from a selection list of items you provide. It's a quick and easy decision maker.
-                                    <br><br>
-                                    &#x27A1;This tool is great for making a decision in trivial matters (should I continue building a mobile app or take a nap or etc). When you have many things to do at once, let this tool pick a random choice for you.
-                                <br><BR>  
-                                   <u> <h5>Note:</h5>  </u>
-                                &#x27A1;Your list items can be on separate lines, separated by commas or etc. Just paste all the choices you have and click the button below to display a randomly picked selection from the list.
-                                enter each choice in new line 
-                                  <br>  <br>
-                                    <u><h5> Example of use </h5></u>
-                                  &#x27A1;Random choice Picker is a free tool to quickly draw a random name or to pick multiple random winners by submitting a list of names. This tool can be used in classroom by teachers to select a random student or for lotteries to draw a random winner. Drawing a random name is never been so easy.
-                                   <br> <br>
-                                   &#x27A1;This tool can be very useful to choose random winners for your online contest. Get all the names of the participants that entered the contest and which comply with the rules of your contest or giveaway. Enter the names in the Name Picker tool, select raffle options and start the draw to pick a random winner for your contest and contact the winner of your raffle and share the results via social media.
-                                   <br> <br>
-                                   &#x27A1;You can use random name selector for any contest, giveaway, raffle, drawing, promotion or competitions. The tool is also used for families to decide who has to do the dishes or by teachers to select random students for activities or assignments in school classes.
-                                   
-                                   <br><br>
-                                   &#x27A1;Random choice Picker is a free tool to draw a random name for a contest, giveaway, promotion or competition. It can also be used to just pick a random item from a list of items. The tool support names, teams, emails, numbers, songs, usernames and more.
-</div>
-                                  </p>
-                    </div>
-                  </div>
-            </div>
-
-        </div>
-
-    </div>
-
-    </div>
-    <div id="toast" data-aos="fade-in">Successfully Generated</div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-   <script src="Script.js/Choice_Picker.js"></script>
-
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    AOS.init({
-        offset: 150,
-        duration: 500,
-    });
-</script>
-
-</html>
-<style>
-     .p {
-  text-align: left;
-  font-size: 15px;
-  background-color: rgb(227, 238, 197);
-}
-
-    .row h1 {
-        color: #fff;
-        font-weight: 900;
-        margin: 0 0 0.5em;
-        letter-spacing: 3px;
-        color: #505050;
-        text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3)
-    }
-
-    #results {
-        border: 1px solid #cccccc;
-        border-radius: 5px;
-        height: 80px;
-        padding: 20px;
-        display: none;
+      body {
+        font-family: "Roboto", sans-serif;
+        background: linear-gradient(
+          135deg,
+          #ffafbd,
+          #ffc3a0,
+          #ffcccb,
+          #e2b0ff,
+          #c4e0e5
+        );
+        color: #333;
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .container {
+        max-width: 600px;
+        width: 100%;
+        padding: 2rem;
+      }
+      .heading {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2c3e50;
         text-align: center;
-        font-size: 30px;
-        overflow: hidden;
-    }
-
-    #results ul {
-        margin: 50px 0 0 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    #results li {
-        margin-top: 20px;
-    }
-
-    #chooser {
-        margin-top: 20px;
+        margin-bottom: 0.5rem;
+      }
+      .subheading {
+        font-size: 1.2rem;
+        color: #7f8c8d;
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      .input-container,
+      .rules-container {
+        background: #fff;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem;
+        max-height: 400px;
+        overflow-y: auto;
+        display: block;
+      }
+      .input-container.hidden,
+      .rules-container.hidden {
         display: none;
-    }
+      }
+      .option-input {
+        margin-bottom: 1rem;
+      }
+      .option-input input {
+        border: 2px solid #ccc;
+        padding: 0.5rem;
+        width: calc(100% - 2rem);
+        border-radius: 0.5rem;
+        transition: border-color 0.3s ease;
+      }
+      .option-input input:focus {
+        border-color: #3498db;
+        outline: none;
+      }
+      .button {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+        background-color: #3498db;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      .button:hover {
+        background-color: #2980b9;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+      }
+      .button:disabled {
+        background-color: #bdc3c7;
+        cursor: not-allowed;
+      }
+      .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+      }
+      .result-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+        background-color: #2ecc71;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-top: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="heading">Random Choice Picker</div>
+      <div class="subheading">
+        Too many options ? Let randomness decide 😎
+      </div>
 
-    #reminder {
-        float: right;
-        padding: 0.2rem 0.5rem;
-        font-weight: bold
-    }
-</style>
+      <!-- Input Container -->
+      <div id="inputContainer" class="input-container">
+        <form id="choiceForm">
+          <div class="option-input">
+            <input type="text" id="option1" placeholder="Option 1" required />
+          </div>
+          <div class="option-input">
+            <input type="text" id="option2" placeholder="Option 2" required />
+          </div>
+          <div class="option-input">
+            <input type="text" id="option3" placeholder="Option 3" />
+          </div>
+          <div class="option-input">
+            <input type="text" id="option4" placeholder="Option 4" />
+          </div>
+          <div class="option-input">
+            <input type="text" id="option5" placeholder="Option 5" />
+          </div>
+          <div class="button-container">
+            <button type="button" id="pickButton" class="button">
+              Pick From List
+            </button>
+            <button type="button" id="showRulesButton" class="button">
+              Show Rules
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Rules Container -->
+      <div id="rulesContainer" class="rules-container hidden">
+        <div class="heading">Rules</div>
+        <div class="subheading">Here’s how it works:</div>
+        <ul>
+          <li>1) Enter your options in the fields above.</li>
+          <li>2) Click "Pick From List" to get a random choice.</li>
+          <li>3) At least two options are required!</li>
+        </ul>
+        <button id="showOptionsButton" class="button mt-5">Show Options</button>
+      </div>
+
+      <!-- Result Box -->
+      <div id="result" class="result-box hidden">?</div>
+      <button id="backToOptionsButton" class="button hidden mt-5">
+        Back to Options
+      </button>
+      <p
+      style="
+        color: rgb(40, 133, 63);
+        margin-top:-1rem;
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: 300;
+        padding: 10px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman',
+          serif;
+        border-radius: 5px;
+      "
+    >
+      Made with
+      <span
+        style="
+          font-weight: 600;
+          font-size: 1.5rem;
+          animation: colorChange 3s infinite;
+        "
+        >Coladco</span
+      ><span style="font-weight: 600; font-size: 1.5rem">🔥</span>
+    </p>
+
+    <style>
+      @keyframes colorChange {
+        0% { color: #ff0000; }
+            25% { color: #00ff00; }
+            50% { color: #0000ff; }
+            75% { color: #ff00ff; }
+            100% { color: #ff0000; }
+        }
+      
+    </style>
+    </div>
+
+    <script>
+      const pickButton = document.getElementById("pickButton");
+      const showRulesButton = document.getElementById("showRulesButton");
+      const showOptionsButton = document.getElementById("showOptionsButton");
+      const backToOptionsButton = document.getElementById(
+        "backToOptionsButton"
+      );
+      const inputContainer = document.getElementById("inputContainer");
+      const rulesContainer = document.getElementById("rulesContainer");
+      const resultBox = document.getElementById("result");
+
+      pickButton.addEventListener("click", function () {
+        const options = [];
+        for (let i = 1; i <= 5; i++) {
+          const value = document.getElementById(`option${i}`).value.trim();
+          if (value) options.push(value);
+        }
+        if (options.length < 2) {
+          alert("Please enter at least two options.");
+          return;
+        }
+        const randomIndex = Math.floor(Math.random() * options.length);
+        resultBox.textContent = options[randomIndex];
+        resultBox.classList.remove("hidden");
+        inputContainer.classList.add("hidden");
+        backToOptionsButton.classList.remove("hidden");
+      });
+
+      showRulesButton.addEventListener("click", function () {
+        if (inputContainer.classList.contains("hidden")) {
+          inputContainer.classList.remove("hidden");
+          rulesContainer.classList.add("hidden");
+          showRulesButton.textContent = "Show Rules";
+        } else {
+          inputContainer.classList.add("hidden");
+          rulesContainer.classList.remove("hidden");
+          showRulesButton.textContent = "Show Options";
+          resultBox.classList.add("hidden"); // Hide result box when showing rules
+          backToOptionsButton.classList.add("hidden"); // Hide back button when showing rules
+        }
+      });
+
+      showOptionsButton.addEventListener("click", function () {
+        inputContainer.classList.remove("hidden");
+        rulesContainer.classList.add("hidden");
+        resultBox.classList.add("hidden"); // Hide result box when showing options
+        backToOptionsButton.classList.add("hidden"); // Hide back button when showing options
+      });
+
+      backToOptionsButton.addEventListener("click", function () {
+        inputContainer.classList.remove("hidden");
+        resultBox.classList.add("hidden");
+        backToOptionsButton.classList.add("hidden");
+      });
+    </script>
+  </body>
+</html>

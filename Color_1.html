@@ -1,283 +1,122 @@
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Color Code Generator</title>
-    <link rel="icon" href="Image/logo.png">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-
-
-
+    <title>Coladco Learing Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-
-        * {
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom right, #F9D423, #FF4E50); /* Default gradient background */
+            transition: background 0.5s;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Titillium Web', sans-serif;
         }
-
-        html,
-        body {
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            height: 100%;
-            width: 100%;
-            background-color: #0beef9;
-            background-image: linear-gradient(315deg, #0beef9 0%, #48a9fe 74%);
-            font-family: 'Roboto', sans-serif;
-            font-weight: 400;
-        }
-
-        .wrapper {
-            display: table;
-            height: 100%;
-            width: 100%;
-        }
-
-        .container-fostrap {
-            display: table-cell;
-            padding: 1em;
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        .fostrap-logo {
-            width: 100px;
-            margin-bottom: 15px
-        }
-
-        .btn2 {
-            margin-left: 85px
-        }
-
-        #button:hover {
-            color: white;
-            background-color: black;
-        }
-
-        .box #note {
-            font-size: 1.2rem;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-
-        .navbar {
-            background-color: black;
-            opacity: 0.9;
-            z-index: 999;
-        }
-
-        .navbar::before {
-            content: "";
-            position: absolute;
-            top: 0%;
-            bottom: 0%;
-            left: 0;
-            right: 0;
-            z-index: -1;
-        }
-
-        .nav-item a {
-            color: white;
-            font-weight: 500;
-            font-size: 17px;
-            transition: 0.5s ease;
-        }
-
-        .nav-item a:hover {
-        color: rgb(0, 195, 255);
-            font-weight: bold;
-        }
-
-        .navbar-brand {
-            color: white;
-            font-weight: 600;
-            font-size: 20px;
-        }
-
-        .nav-item {
-            margin-right: 20px;
-        }
-
-
-        .max-screen {
-            min-width: 100vw;
-            min-height: 100vh;
-            background: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
-            transition: 0.7s ease;
-        }
-
-        .box {
-            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            min-height: 10vh;
-            width: 28vw;
-            margin: 35px 32vw;
-            padding: 12px;
+        .container {
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
-            background-color: seashell;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 80%;
         }
-
-        #bgc {
-            font-size: 35px;
-        }
-
-        @media screen and (max-width: 643px) {
-            .box {
-                min-height: 15vh;
-                width: 33vw;
-                padding: 2px 5px;
-                margin: 25px 30vw;
-                font-size: 20px;
-            }
-
-            #bgc {
-                font-size: 20px;
-                font-weight: 600;
-            }
-        }
-        .p {
-  text-align: left;
-  font-size: 15px;
-  background-color: rgb(227, 238, 197);
-}
-
-        .btn {
-            margin: 25px 25px;
+        input {
             font-size: 1.2rem;
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            text-align: center;
         }
-
-        .btn:hover {
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        button {
+            transition: transform 0.2s;
         }
-
-        #toast {
-            position: absolute;
-            bottom: 0;
-            border-radius: 5px;
-            padding: 15px 50px;
-            background: black;
-            opacity: 0;
-            color: white;
-            font-weight: 500;
-            visibility: hidden;
-            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-            transition: 0.3s;
+        button:hover {
+            transform: scale(1.05);
         }
-
-        #toast.show {
-            visibility: visible;
-            opacity: 1;
-            z-index: 1000;
-            bottom: 50px;
+        .color-change {
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: bold;
+            animation: colorChange 5s infinite;
+        }
+        @keyframes colorChange {
+            0% { color: #ff0000; }
+            25% { color: #00ff00; }
+            50% { color: #0000ff; }
+            75% { color: #ff00ff; }
+            100% { color: #ff0000; }
         }
     </style>
 </head>
-
-<section class="wrapper">
-
-    <div class="max-screen">
-        <!-- <div class="container-fostrap">
-            <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
-                <div class="container">
-                    <a class="navbar-brand" href="#">Coladco</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" style="margin-right: 30px;" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="Menu.html">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="About.html">About</a>
-                            </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="#">Contact Us</a>
-                            </li> 
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html">Exit</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div> -->
-
-        <div class="container">
-            <h2 class="text-center text-white pt-5">Random Color Picker</h2>
-            <div class="box">
-                <span id="bgc">#FFBBGG</span>
-            </div>
-            <div class="text-center">
-                <span><button type="button" class="btn btn-dark bg-dark text-white" onclick="myFuntion()">Change
-                        Color</button></span>
-                <button type="button" class="btn btn-dark bg-dark m-10" id="copy">Copy Color Code</button>
-                <button class="btn gbtn btn-dark bg-dark text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">About</button>
-                <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-                    <div class="offcanvas-header">
-                      <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">why you should use</h5>
-                      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <div class="p">
-                      <p>	&#x27A1;If you're painting a room or need to choose a color for a project, it can sometimes be difficult to make the final choice. This is especially true if you have been looking at the same colors for a long period of time. Using this random color tool can help refresh your mind and help you ultimately choose the best color. By having random colors displayed, your mind is able to break away from the colors you've been spending so much time with allowing you to look at them from a fresh perspective. You might even be surprised by the random color picker and find a color that works that you hadn't been considering.
-                <br><BR>
-                &#x27A1;To randomly generate a color simply load this page. Press the "Change color" button if you want the random color generator to produce another color for you. Our software uses a strong random number generator to produce the values of red, green, and blue that comprise each color. The output is the color, visualized, and its unique code in HEX
-                        <br><br>
-                        &#x27A1;The human eye is pretty good at what it does and can distinguish between about 10 million colors [1]. In theory, we could draw a random color from that infinity.
-                    <br><BR>    
-                    &#x27A1;we can reproduce over 16 million colors and so this is also the range of colors our color generator picks between. 16,777,216 colors, to be precise.
-                      <br>  <br>
-                        
-                      &#x27A1;HEX is just a group of six hexadecimal digits and is a representation often used in web design. For example, the HEX code for the color black is #000000 while the HEX code for a color in the purple range is #8f0f8d.
-                       <br> <br>
-                       &#x27A1;There's something tremendously relaxing about looking at random colors. Don't believe us? Give yourself five minutes to use the random color picker to see how relaxing it can be. It's incredible how relaxing it can be and how far your mind will wander as you do it.
-                        <br><BR>
-                        &#x27A1;We're quite interested in knowing why you made your way to this random color generator and how exactly you use it. The better we understand how people are using this tool, the more opportunities we have to make improvements to it to make it more useful for everyone who comes by. If you're using the random color picker in a way not mentioned above, please take a few minutes to contact us and explain how you use it so we can share it with others. If you have ideas on how to make it better or have issues that you would like to see changed, we'd love to hear them as well. We hope to make this the best random color generator on the Internet and to do that, we'd love to get your help.
-                      </p>
-                        </div>
-                    </div>
-                  </div>
-            </div>
- <p class="text-center text-white fs-5">Made with &#10084;&#65039; by <span
-                style="color: rgb(0, 37, 202); font-weight: 600;">Coladco</span> </p>
-            <div id="toast">Successfully Generated</div>
+<body class="flex items-center justify-center min-h-screen flex-col bg-gray-100">
+    <h1 class="text-4xl font-bold mb-4">
+        <span class="color-change">C</span>
+        <span class="color-change">o</span>
+        <span class="color-change">l</span>
+        <span class="color-change">o</span>
+        <span class="color-change">r</span>
+        <span class="color-change"> </span>
+        <span class="color-change">P</span>
+        <span class="color-change">i</span>
+        <span class="color-change">c</span>
+        <span class="color-change">k</span>
+        <span class="color-change">e</span>
+        <span class="color-change">r</span>
+        <span class="color-change"> </span>
+        <span class="color-change">🎨</span>
+    </h1>
+    <div class="container text-center">
+        <input id="colorCode" type="text" class="w-full p-2 mt-8 border-2 border-gray-300 rounded-lg text-lg" readonly value="background: linear-gradient(to bottom right, #F9D423, #FF4E50);">
+        <div class="mt-4 flex justify-center space-x-4">
+            <button id="solidColorButton" class="px-7 py-2 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-700">
+                Solid Color</i>
+            </button>
+            <button id="gradientButton" class="px-9 py-2 bg-purple-500 text-white font-bold rounded-lg shadow-md hover:bg-purple-700">
+                Gradient <i class="fas fa-gradient"></i>
+            </button>
         </div>
+        <button id="copyButton" class="px-10 py-2  bg-green-500 text-white font-bold rounded-lg shadow-md hover:bg-green-700 mt-5">
+            Copy CSS Code <i class="fas fa-copy"></i>
+        </button>
     </div>
+    <p class="text-center text-lg mt-6 font-serif">
+        Made with
+        <span class="font-semibold text-xl animate-pulse">Coladco</span>
+        <span class="font-semibold text-xl">🔥</span>
+    </p>
 
+    <script>
+        const solidColorButton = document.getElementById('solidColorButton');
+        const gradientButton = document.getElementById('gradientButton');
+        const colorCode = document.getElementById('colorCode');
+        const copyButton = document.getElementById('copyButton');
+        
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
 
-</section>
-<script src="Script.js/Color_1.js"></script>
+        solidColorButton.addEventListener('click', () => {
+            const newColor = getRandomColor();
+            document.body.style.background = newColor;
+            colorCode.value = `background: ${newColor};`;
+        });
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+        gradientButton.addEventListener('click', () => {
+            const color1 = getRandomColor();
+            const color2 = getRandomColor();
+            document.body.style.background = `linear-gradient(to bottom right, ${color1}, ${color2})`;
+            colorCode.value = `background: linear-gradient(to bottom right, ${color1}, ${color2});`;
+        });
 
-
-<!-- AOS -->
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    AOS.init({
-        offset: 150,
-        duration: 500,
-    });
-</script>
-
+        copyButton.addEventListener('click', () => {
+            colorCode.select();
+            document.execCommand('copy');
+            alert('CSS Code copied to clipboard!');
+        });
+    </script>
 </body>
-
 </html>

@@ -1,268 +1,223 @@
 
 <!DOCTYPE html>
-
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How To Generate QR Code Using Javascript</title>   
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script
-        src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
-
-  <script>
-  src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coladco Learing Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        #coin {
+            font-size: 3rem;
+            width: 150px;
+            height: 150px;
+            border: 4px solid #ccc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            transition: transform 1s linear; /* Increased speed */
+            text-align: center;
+            line-height: 150px;
+            cursor: pointer;
+            position: relative;
+        }
+        #coin.flipping {
+            transform: rotateY(720deg); /* Faster flip */
+        }
+        #coinText {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .btn-option {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-head {
+            background-color: #4CAF50; /* Green for Head */
+        }
+        .btn-tail {
+            background-color: #f44336; /* Red for Tail */
+        }
+        .btn-head.active {
+            background-color: #45a049;
+        }
+        .btn-tail.active {
+            background-color: #e53935;
+        }
+        .btn-head.inactive {
+            background-color: #9e9e9e;
+        }
+        .btn-tail.inactive {
+            background-color: #9e9e9e;
+        }
+        .toast {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        @keyframes colorChange {
+            0% { color: #ff0000; }
+            25% { color: #00ff00; }
+            50% { color: #0000ff; }
+            75% { color: #ff00ff; }
+            100% { color: #ff0000; }
+        }
+        .color-changing-heading {
+            animation: colorChange 5s infinite;
+        }
+    </style>
 </head>
-<section>
-<div id="box">
-<div id="coin">
-    <div class="side-a"></div>
-    <div class="side-b"></div>
-  </div>
-  <h1>Click on coin to flip</h1>
+<body>
+    <h1 class="text-4xl font-bold mb-10 text-center color-changing-heading font-mono">Flip the Coin and Let the Fates Decide 🤔</h1>
+    
+    <div id="coin" class="flex items-center justify-center">
+        <span id="coinText">Head</span>
+    </div>
 
-  <div class="wrap">
-    <div class="btn-text-left">
-    <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-new">
-      
-      More info
-</center>
+    <div class="button-container">
+        <button id="btnHead" class="btn-option btn-head">Head</button>
+        <button id="btnTail" class="btn-option btn-tail">Tail</button>
+    </div>
+
+    <button id="flipButton" class="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 mt-4">
+        Flip Coin
     </button>
-    </div>
-  </div>
-   
-  <div class="modal fade bs-example-modal-new" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    
-    <div class="modal-dialog">
-      
-      <!-- Modal Content: begins -->
-      <div class="modal-content">
-        
-        <!-- Modal Header -->
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-           <center><h4 class="modal-title" id="gridSystemModalLabel">FAQ</h4></center>
-        </div>
-      
-        <!-- Modal Body -->  
-        <div class="modal-body">
-          <div class="body-message">
-            
-            <p>	&#x27A1;No coins in your pocket? With our online coin flipper tool you can instantly flip coin.
-              <br><BR>
-              &#x27A1;Touch on the coin to flip
-                      <br><br>
-                      &#x27A1;A Coin Flip in an online simulator for doing a coin toss, when you don't have any real coins. Both people should choose heads or tails before flipping the virtual coins. The tool will then flip a coin using a random method and decide the winner of the coin flip.
-                  <br><BR>    
-                  &#x27A1;A coin flip is already used for ages to make a random decision. Flipping a coin is widely used in sports and games or just a fun way to decide who is going to start or has to do a task. The only thing which make our tool different than a real coin flip, is that our coin can't flip on the edge.
-                    <br>  <br>
-                      
-                    &#x27A1;The probability of heads or tails is also 50:50 as if you toss a coin hardly or softly in the real world.
-                     <br> <br>
-                     &#x27A1;The coin flip generator is truly random and can't be manipulated.
-                     
-                    </p>
-          </div>
-        </div>
-      
-        <!-- Modal Footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-        </div>
-      
-      </div>
-      <!-- Modal Content: ends -->
-      
-    </div>
-    
-  </div>
-  
-  
-  </div>
-  
-  
-   
-    <!-- Trigger the modal with a button -->
-   
-  
 
-
-  </section>
-  
-
-
-  <script>
-    
-      jQuery(document).ready(function($){
-
-$('#coin').on('click', function(){
-  var flipResult = Math.random();
-  $('#coin').removeClass();
-  setTimeout(function(){
-    if(flipResult <= 0.5){
-      $('#coin').addClass('heads');
-      console.log('it is head');
-      value1.push("head");
-    }
-    else{
-      $('#coin').addClass('tails');
-      console.log('it is tails');
-      value2.push("Tails");
-    }
-  }, 100);
-  
-});
-});
-
-  </script>
-
-
- 
-   <script>
-function myFunction() {
-  for (var i=0; i<value1.length; i++)
-    console.log(i + ". " + value1[i]);
-
-
-}
-</script>
-
+    <p
+    style="
+      color: rgb(54, 145, 178);
+      margin-top:1.5rem;
+      text-align: center;
+      font-size: 1.3rem;
+      padding: 10px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman',
+        serif;
+      border-radius: 5px;
+    "
+  >
+    Made with
+    <span
+      style="
+        font-weight: 600;
+        font-size: 1.5rem;
+        animation: colorChangebelow 3s infinite;"
+      >Coladco</span
+    ><span style="font-weight: 600; font-size: 1.5rem">🔥</span>
+  </p>
 
   <style>
-  
-
-  .btn-text-left{
-text-align: left;	
-}
-
-p {
-  text-align: left;
-  font-size: 15px;
-  background-color: rgb(227, 238, 197);
-}
-
-body {
-  padding-top: 50px;
--webkit-perspective: 800px;
-width: 100%;
-height: 100%;
-background:linear-gradient(to right top ,#b597f6,#439cfb);
-display: flex;
-justify-content: center;
-align-items: center;
-}
-h1{
-  text-align: center;
-}
-.bottomright {
-  position: absolute;
-  bottom: 8px;
-  right: 16px;
-  font-size: 18px;
-}
-#coin {
-  position: relative;
-  margin: 0 auto;
-  width: 500px;
-  height: 500px;
-  cursor: pointer;
-}
-#coin div {
-  width: 100%;
-  height: 100%;
-  -webkit-border-radius: 50%;
-     -moz-border-radius: 50%;
-          border-radius: 50%;
-  -webkit-box-shadow: inset 0 0 45px rgba(255,255,255,.3), 0 12px 20px -10px rgba(0,0,0,.4);
-     -moz-box-shadow: inset 0 0 45px rgba(255,255,255,.3), 0 12px 20px -10px rgba(0,0,0,.4);
-          box-shadow: inset 0 0 45px rgba(255,255,255,.3), 0 12px 20px -10px rgba(0,0,0,.4);
-}
-.side-a {
- 
-  background-image: url();
-  display: block;
-    width: 40px;
-    height: 40px;
-    background: #E6E7ED;
-    -moz-border-radius: 20px;
-    -webkit-border-radius: 20px;
-    background-image: url(https://media.istockphoto.com/vectors/money-vector-id1270779408?k=20&m=1270779408&s=612x612&w=0&h=NeirkHfD6PCHejwyssXKxXst6kBvaP4fhUu7NGz2xro=);
-    background-position:50% 50%;
-    background-repeat:no-repeat;  
-}
-.side-a>image {
-   max-height: 50%;
-   max-width: 100%;
-}
-.side-b {
-  background-image: url();
-  display: block;
-    width: 40px;
-    height: 40px;
-    background: #E6E7ED;
-    -moz-border-radius: 20px;
-    -webkit-border-radius: 20px;
-   background-image: url('https://thumbs.dreamstime.com/b/india-one-rupee-coin-white-isolated-background-india-one-rupee-coin-white-isolated-background-212931097.jpg');
-    background-position:50% 50%;
-    background-repeat:no-repeat;  
-}
-.box{
-width: 60%;
-height: 90%;
-padding: 50px 15px;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-background: #fff;
-box-shadow: 0 10px 25px -10px rgba(0,0,0,0.5);
-border-radius: 5px;
-/*padding-top: 30px;
-padding: 30px;*/
-
-}
-
-#coin {
-  transition: -webkit-transform 1s ease-in;
-  -webkit-transform-style: preserve-3d;
-}
-#coin div {
-  position: absolute;
-  -webkit-backface-visibility: hidden;
-}
-.side-a {
-  z-index: 100;
-}
-.side-b {
-  -webkit-transform: rotateY(-180deg);
-
-}
-
-#coin.heads {
-  -webkit-animation: flipHeads 3s ease-out forwards;
-  -moz-animation: flipHeads 3s ease-out forwards;
-    -o-animation: flipHeads 3s ease-out forwards;
-       animation: flipHeads 3s ease-out forwards;
-}
-#coin.tails {
-  -webkit-animation: flipTails 3s ease-out forwards;
-  -moz-animation: flipTails 3s ease-out forwards;
-    -o-animation: flipTails 3s ease-out forwards;
-       animation: flipTails 3s ease-out forwards;
-}
-
-@-webkit-keyframes flipHeads {
-  from { -webkit-transform: rotateY(0); -moz-transform: rotateY(0); transform: rotateY(0); }
-  to { -webkit-transform: rotateY(1800deg); -moz-transform: rotateY(1800deg); transform: rotateY(1800deg); }
-}
-@-webkit-keyframes flipTails {
-  from { -webkit-transform: rotateY(0); -moz-transform: rotateY(0); transform: rotateY(0); }
-  to { -webkit-transform: rotateY(1980deg); -moz-transform: rotateY(1980deg); transform: rotateY(1980deg); }
-}
-
-
+    @keyframes colorChangebelow {
+      0% {
+        color: #c7e1c9;
+      }
+      50% {
+        color: #f3b712;
+      }
+      100% {
+        color: #ae5e36;
+      }
+    }
   </style>
+
+    <div id="toast" class="toast"></div>
+
+    <audio id="coinSound" src="./assets/sounds/coin-flip.mp3"></audio>
+
+    <script>
+        const coin = document.getElementById('coin');
+        const btnHead = document.getElementById('btnHead');
+        const btnTail = document.getElementById('btnTail');
+        const flipButton = document.getElementById('flipButton');
+        const coinText = document.getElementById('coinText');
+        const toast = document.getElementById('toast');
+        const coinSound = document.getElementById('coinSound');
+
+        let choice = '';
+        let flipping = false;
+
+        function showToast(messageText) {
+            toast.textContent = messageText;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        function flipCoin() {
+            if (!choice) {
+                showToast('Please select Head or Tail.');
+                return;
+            }
+            if (flipping) return;
+            flipping = true;
+            coin.classList.add('flipping');
+            coinSound.play();
+            setTimeout(() => {
+                const randomNumber = Math.random() < 0.5 ? 'Head' : 'Tail';
+                coinText.textContent = randomNumber;
+                coin.classList.remove('flipping');
+                coinSound.pause();
+                coinSound.currentTime = 0; // Reset sound to the start
+                flipping = false;
+                setTimeout(() => { // Delay showing the result message
+                    if (randomNumber === choice) {
+                        showToast('You win 👍');
+                    } else {
+                        showToast('You lose 😂');
+                    }
+                }, 500); // Adjust this delay if needed
+            }, 1000); // Duration of the flip animation
+        }
+
+        btnHead.addEventListener('click', () => {
+            choice = 'Head';
+            btnHead.classList.add('active');
+            btnTail.classList.remove('active');
+            btnHead.classList.remove('inactive');
+            btnTail.classList.add('inactive');
+        });
+
+        btnTail.addEventListener('click', () => {
+            choice = 'Tail';
+            btnTail.classList.add('active');
+            btnHead.classList.remove('active');
+            btnTail.classList.remove('inactive');
+            btnHead.classList.add('inactive');
+        });
+
+        flipButton.addEventListener('click', flipCoin);
+    </script>
+</body>
+</html>
+
+
