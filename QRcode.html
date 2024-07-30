@@ -1,91 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="qrStyle.css" />
-    <title>Coladco Learing Hub</title>
-  </head>
-  <body>
-    <div class="wrapper">
-      <div class="qr-code-generator">
-        <header>
-          <h1>Generate QR Code</h1>
-          <input
-            type="text"
-            placeholder="Type your text or URL"
-            data-input-field
-          />
-        </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="qrStyle.css" />
+  <title>Coladco Learning Hub</title>
+  <style>
+    .back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      border: none;
+      background-color:rgb(200, 232, 244);
+      padding: 5px 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1px;
+      cursor: pointer;
+      border-radius: 10%;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
 
-        <main class="qr-size-selection">
-          <label for="select-sizes">Select size :</label>
-          <select name="select-sizes" data-select-sizes>
-            <option value="100">100x100</option>
-            <option value="200">200x200</option>
-            <option value="300">300x300</option>
-            <option value="400">400x400</option>
-            <option value="500">500x500</option>
-            <option value="600">600x600</option>
-            <option value="700">700x700</option>
-            <option value="800">800x800</option>
-          </select>
-        </main>
+    .back-button:hover {
+      transform: scale(1.1);
+    }
 
-        <div class="qr-image-container" data-qr-image-container></div>
+    .back-button-icon {
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <button class="back-button" onclick="location.href='Menu.html'">
+      <span class="back-button-icon">⬅️</span>
+    </button>
+    <div class="qr-code-generator">
+      <header>
+        <h1>Generate QR Code</h1>
+        <input type="text" placeholder="Type your text or URL" data-input-field />
+      </header>
 
-        <footer>
-          <button class="generate-button" data-generate-button>Generate</button>
-          <button>
-            <a
-              href=""
-              download="QR_Code.png"
-              class="download-button"
-              data-download-button
-              >Download</a
-            >
-          </button>
-        </footer>
-      </div>
-      <p
-        style="
-          color: rgb(200, 232, 244);
-          margin-top: 2rem;
-          text-align: center;
-          font-size: 1.3rem;
-          padding: 10px;
-          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-          border-radius: 5px;
-        "
-      >
-        Made with
-        <span
-          style="
-            font-weight: 600;
-            font-size: 1.5rem;
-            animation: colorChange 3s infinite;
-          "
-          >Coladco</span
-        ><span style="font-weight: 600; font-size: 1.5rem">🔥</span>
-      </p>
+      <main class="qr-size-selection">
+        <label for="select-sizes">Select size :</label>
+        <select name="select-sizes" data-select-sizes>
+          <option value="100">100x100</option>
+          <option value="200">200x200</option>
+          <option value="300">300x300</option>
+          <option value="400">400x400</option>
+          <option value="500">500x500</option>
+          <option value="600">600x600</option>
+          <option value="700">700x700</option>
+          <option value="800">800x800</option>
+        </select>
+      </main>
 
-      <style>
-        @keyframes colorChange {
-          0% {
-            color: #ffffff;
-          }
-          50% {
-            color: #12a4f3;
-          }
-          100% {
-            color: #ffffff;
-          }
-        }
-      </style>
+      <div class="qr-image-container" data-qr-image-container></div>
+
+      <footer>
+        <button class="generate-button" data-generate-button>Generate</button>
+        <button>
+          <a href="" download="QR_Code.png" class="download-button" data-download-button>Download</a>
+        </button>
+      </footer>
     </div>
+    <p style="color: rgb(200, 232, 244); margin-top: 2rem; text-align: center; font-size: 1.3rem; padding: 10px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; border-radius: 5px;">
+      Made with
+      <span style="font-weight: 600; font-size: 1.5rem; animation: colorChange 3s infinite;">Coladco</span><span style="font-weight: 600; font-size: 1.5rem">🔥</span>
+    </p>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script src="qrCode.js"></script>
-  </body>
+    <style>
+      @keyframes colorChange {
+        0% {
+          color: #ffffff;
+        }
+        50% {
+          color: #12a4f3;
+        }
+        100% {
+          color: #ffffff;
+        }
+      }
+    </style>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="./Script.js/qrCode.js"></script>
+</body>
 </html>

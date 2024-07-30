@@ -1,223 +1,283 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coladco Learing Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
+      body {
+        font-family: "Roboto", sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+      #coin {
+        font-size: 3rem;
+        width: 150px;
+        height: 150px;
+        border: 4px solid #ccc;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        transition: transform 1s linear; /* Increased speed */
+        text-align: center;
+        line-height: 150px;
+        cursor: pointer;
+        position: relative;
+      }
+      #coin.flipping {
+        transform: rotateY(720deg); /* Faster flip */
+      }
+      #coinText {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+      }
+      .button-container {
+        margin-top: 20px;
+      }
+      .btn-option {
+        padding: 10px 20px;
+        margin: 0 10px;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .btn-head {
+        background-color: #4caf50; /* Green for Head */
+      }
+      .btn-tail {
+        background-color: #f44336; /* Red for Tail */
+      }
+      .btn-head.active {
+        background-color: #45a049;
+      }
+      .btn-tail.active {
+        background-color: #e53935;
+      }
+      .btn-head.inactive {
+        background-color: #9e9e9e;
+      }
+      .btn-tail.inactive {
+        background-color: #9e9e9e;
+      }
+      .toast {
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        display: none;
+      }
+      @keyframes colorChange {
+        0% {
+          color: #ff0000;
         }
-        #coin {
-            font-size: 3rem;
-            width: 150px;
-            height: 150px;
-            border: 4px solid #ccc;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #fff;
-            transition: transform 1s linear; /* Increased speed */
-            text-align: center;
-            line-height: 150px;
-            cursor: pointer;
-            position: relative;
+        25% {
+          color: #00ff00;
         }
-        #coin.flipping {
-            transform: rotateY(720deg); /* Faster flip */
+        50% {
+          color: #0000ff;
         }
-        #coinText {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
+        75% {
+          color: #ff00ff;
         }
-        .button-container {
-            margin-top: 20px;
+        100% {
+          color: #ff0000;
         }
-        .btn-option {
-            padding: 10px 20px;
-            margin: 0 10px;
-            border: none;
-            border-radius: 5px;
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .btn-head {
-            background-color: #4CAF50; /* Green for Head */
-        }
-        .btn-tail {
-            background-color: #f44336; /* Red for Tail */
-        }
-        .btn-head.active {
-            background-color: #45a049;
-        }
-        .btn-tail.active {
-            background-color: #e53935;
-        }
-        .btn-head.inactive {
-            background-color: #9e9e9e;
-        }
-        .btn-tail.inactive {
-            background-color: #9e9e9e;
-        }
-        .toast {
-            position: fixed;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            display: none;
-        }
-        @keyframes colorChange {
-            0% { color: #ff0000; }
-            25% { color: #00ff00; }
-            50% { color: #0000ff; }
-            75% { color: #ff00ff; }
-            100% { color: #ff0000; }
-        }
-        .color-changing-heading {
-            animation: colorChange 5s infinite;
-        }
+      }
+      .color-changing-heading {
+        animation: colorChange 5s infinite;
+      }
+      .back-btn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #f2e205;
+        border: none;
+        border-radius: 50%;
+        padding: 10px;
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.3s;
+      }
+
+      .back-btn:hover {
+        transform: scale(1.1);
+        background-color: #2db126;
+      }
+
+      .back-btn svg {
+        fill: white;
+      }
     </style>
-</head>
-<body>
-    <h1 class="text-4xl font-bold mb-10 text-center color-changing-heading font-mono">Flip the Coin and Let the Fates Decide 🤔</h1>
-    
+  </head>
+  <body>
+    <button class="back-btn" onclick="location.href='Menu.html'">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-7 w-7"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 19l-7-7 7-7"
+        />
+      </svg>
+    </button>
+    <h1
+      class="text-4xl font-bold mb-10 text-center color-changing-heading font-mono"
+    >
+      Flip the Coin and Let the Fates Decide 🤔
+    </h1>
+
     <div id="coin" class="flex items-center justify-center">
-        <span id="coinText">Head</span>
+      <span id="coinText">Head</span>
     </div>
 
     <div class="button-container">
-        <button id="btnHead" class="btn-option btn-head">Head</button>
-        <button id="btnTail" class="btn-option btn-tail">Tail</button>
+      <button id="btnHead" class="btn-option btn-head">Head</button>
+      <button id="btnTail" class="btn-option btn-tail">Tail</button>
     </div>
 
-    <button id="flipButton" class="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 mt-4">
-        Flip Coin
+    <button
+      id="flipButton"
+      class="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 mt-4"
+    >
+      Flip Coin
     </button>
 
     <p
-    style="
-      color: rgb(54, 145, 178);
-      margin-top:1.5rem;
-      text-align: center;
-      font-size: 1.3rem;
-      padding: 10px;
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman',
-        serif;
-      border-radius: 5px;
-    "
-  >
-    Made with
-    <span
       style="
-        font-weight: 600;
-        font-size: 1.5rem;
-        animation: colorChangebelow 3s infinite;"
-      >Coladco</span
-    ><span style="font-weight: 600; font-size: 1.5rem">🔥</span>
-  </p>
+        color: rgb(54, 145, 178);
+        margin-top: 1.5rem;
+        text-align: center;
+        font-size: 1.3rem;
+        padding: 10px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        border-radius: 5px;
+      "
+    >
+      Made with
+      <span
+        style="
+          font-weight: 600;
+          font-size: 1.5rem;
+          animation: colorChangebelow 3s infinite;
+        "
+        >Coladco</span
+      ><span style="font-weight: 600; font-size: 1.5rem">🔥</span>
+    </p>
 
-  <style>
-    @keyframes colorChangebelow {
-      0% {
-        color: #c7e1c9;
+    <style>
+      @keyframes colorChangebelow {
+        0% {
+          color: #c7e1c9;
+        }
+        50% {
+          color: #f3b712;
+        }
+        100% {
+          color: #ae5e36;
+        }
       }
-      50% {
-        color: #f3b712;
-      }
-      100% {
-        color: #ae5e36;
-      }
-    }
-  </style>
+    </style>
 
     <div id="toast" class="toast"></div>
 
     <audio id="coinSound" src="./assets/sounds/coin-flip.mp3"></audio>
 
     <script>
-        const coin = document.getElementById('coin');
-        const btnHead = document.getElementById('btnHead');
-        const btnTail = document.getElementById('btnTail');
-        const flipButton = document.getElementById('flipButton');
-        const coinText = document.getElementById('coinText');
-        const toast = document.getElementById('toast');
-        const coinSound = document.getElementById('coinSound');
+      const coin = document.getElementById("coin");
+      const btnHead = document.getElementById("btnHead");
+      const btnTail = document.getElementById("btnTail");
+      const flipButton = document.getElementById("flipButton");
+      const coinText = document.getElementById("coinText");
+      const toast = document.getElementById("toast");
+      const coinSound = document.getElementById("coinSound");
 
-        let choice = '';
-        let flipping = false;
+      let choice = "";
+      let flipping = false;
 
-        function showToast(messageText) {
-            toast.textContent = messageText;
-            toast.style.display = 'block';
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 3000);
+      function showToast(messageText) {
+        toast.textContent = messageText;
+        toast.style.display = "block";
+        setTimeout(() => {
+          toast.style.display = "none";
+        }, 3000);
+      }
+
+      function flipCoin() {
+        if (!choice) {
+          showToast("Please select Head or Tail.");
+          return;
         }
-
-        function flipCoin() {
-            if (!choice) {
-                showToast('Please select Head or Tail.');
-                return;
+        if (flipping) return;
+        flipping = true;
+        coin.classList.add("flipping");
+        coinSound.play();
+        setTimeout(() => {
+          const randomNumber = Math.random() < 0.5 ? "Head" : "Tail";
+          coinText.textContent = randomNumber;
+          coin.classList.remove("flipping");
+          coinSound.pause();
+          coinSound.currentTime = 0; // Reset sound to the start
+          flipping = false;
+          setTimeout(() => {
+            // Delay showing the result message
+            if (randomNumber === choice) {
+              showToast("You win 👍");
+            } else {
+              showToast("You lose 😂");
             }
-            if (flipping) return;
-            flipping = true;
-            coin.classList.add('flipping');
-            coinSound.play();
-            setTimeout(() => {
-                const randomNumber = Math.random() < 0.5 ? 'Head' : 'Tail';
-                coinText.textContent = randomNumber;
-                coin.classList.remove('flipping');
-                coinSound.pause();
-                coinSound.currentTime = 0; // Reset sound to the start
-                flipping = false;
-                setTimeout(() => { // Delay showing the result message
-                    if (randomNumber === choice) {
-                        showToast('You win 👍');
-                    } else {
-                        showToast('You lose 😂');
-                    }
-                }, 500); // Adjust this delay if needed
-            }, 1000); // Duration of the flip animation
-        }
+          }, 500); // Adjust this delay if needed
+        }, 1000); // Duration of the flip animation
+      }
 
-        btnHead.addEventListener('click', () => {
-            choice = 'Head';
-            btnHead.classList.add('active');
-            btnTail.classList.remove('active');
-            btnHead.classList.remove('inactive');
-            btnTail.classList.add('inactive');
-        });
+      btnHead.addEventListener("click", () => {
+        choice = "Head";
+        btnHead.classList.add("active");
+        btnTail.classList.remove("active");
+        btnHead.classList.remove("inactive");
+        btnTail.classList.add("inactive");
+      });
 
-        btnTail.addEventListener('click', () => {
-            choice = 'Tail';
-            btnTail.classList.add('active');
-            btnHead.classList.remove('active');
-            btnTail.classList.remove('inactive');
-            btnHead.classList.add('inactive');
-        });
+      btnTail.addEventListener("click", () => {
+        choice = "Tail";
+        btnTail.classList.add("active");
+        btnHead.classList.remove("active");
+        btnTail.classList.remove("inactive");
+        btnHead.classList.add("inactive");
+      });
 
-        flipButton.addEventListener('click', flipCoin);
+      flipButton.addEventListener("click", flipCoin);
     </script>
-</body>
+  </body>
 </html>
-
-

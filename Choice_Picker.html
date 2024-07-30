@@ -120,14 +120,48 @@
       .hidden {
         display: none;
       }
+      .back-btn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #f2e205;
+        border: none;
+        border-radius: 50%;
+        padding: 10px;
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.3s;
+      }
+
+      .back-btn:hover {
+        transform: scale(1.1);
+        background-color: #2db126;
+      }
+
+      .back-btn svg {
+        fill: white;
+      }
     </style>
   </head>
   <body>
     <div class="container">
+      <button class="back-btn" onclick="location.href='Menu.html'">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-7 w-7"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
       <div class="heading">Random Choice Picker</div>
-      <div class="subheading">
-        Too many options ? Let randomness decide 😎
-      </div>
+      <div class="subheading">Too many options ? Let randomness decide 😎</div>
 
       <!-- Input Container -->
       <div id="inputContainer" class="input-container">
@@ -176,39 +210,47 @@
         Back to Options
       </button>
       <p
-      style="
-        color: rgb(40, 133, 63);
-        margin-top:-1rem;
-        text-align: center;
-        font-size: 1.3rem;
-        font-weight: 300;
-        padding: 10px;
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman',
-          serif;
-        border-radius: 5px;
-      "
-    >
-      Made with
-      <span
         style="
-          font-weight: 600;
-          font-size: 1.5rem;
-          animation: colorChange 3s infinite;
+          color: rgb(40, 133, 63);
+          margin-top: -1rem;
+          text-align: center;
+          font-size: 1.3rem;
+          font-weight: 300;
+          padding: 10px;
+          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+          border-radius: 5px;
         "
-        >Coladco</span
-      ><span style="font-weight: 600; font-size: 1.5rem">🔥</span>
-    </p>
+      >
+        Made with
+        <span
+          style="
+            font-weight: 600;
+            font-size: 1.5rem;
+            animation: colorChange 3s infinite;
+          "
+          >Coladco</span
+        ><span style="font-weight: 600; font-size: 1.5rem">🔥</span>
+      </p>
 
-    <style>
-      @keyframes colorChange {
-        0% { color: #ff0000; }
-            25% { color: #00ff00; }
-            50% { color: #0000ff; }
-            75% { color: #ff00ff; }
-            100% { color: #ff0000; }
+      <style>
+        @keyframes colorChange {
+          0% {
+            color: #ff0000;
+          }
+          25% {
+            color: #00ff00;
+          }
+          50% {
+            color: #0000ff;
+          }
+          75% {
+            color: #ff00ff;
+          }
+          100% {
+            color: #ff0000;
+          }
         }
-      
-    </style>
+      </style>
     </div>
 
     <script>

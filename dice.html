@@ -1,148 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coladco Learning Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+      body {
+        font-family: "Roboto", sans-serif;
+        background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+      }
+      #dice {
+        font-size: 8rem; /* Increased size for better visibility */
+        background-color: #ffcccb; /* Changed dice color */
+        transition: transform 2s; /* Added transition for rotation */
+      }
+      @keyframes colorChange {
+        0% {
+          color: #ff0000;
         }
-        #dice {
-            font-size: 8rem; /* Increased size for better visibility */
-            background-color: #ffcccb; /* Changed dice color */
-            transition: transform 2s; /* Added transition for rotation */
+        25% {
+          color: #00ff00;
         }
-        @keyframes colorChange {
-            0% { color: #ff0000; }
-            25% { color: #00ff00; }
-            50% { color: #0000ff; }
-            75% { color: #ff00ff; }
-            100% { color: #ff0000; }
+        50% {
+          color: #0000ff;
         }
-        .dynamic-color {
-            animation: colorChange 5s infinite;
+        75% {
+          color: #ff00ff;
         }
-        @keyframes rotateDice {
-            0% { transform: rotateY(0deg); }
-            100% { transform: rotateY(360deg); }
+        100% {
+          color: #ff0000;
         }
-        .rotating {
-            animation: rotateDice 0.8s ease-out;
+      }
+      .dynamic-color {
+        animation: colorChange 5s infinite;
+      }
+      @keyframes rotateDice {
+        0% {
+          transform: rotateY(0deg);
         }
-        .disabled-button {
-            cursor: not-allowed;
-            opacity: 0.5;
+        100% {
+          transform: rotateY(360deg);
         }
+      }
+      .rotating {
+        animation: rotateDice 0.8s ease-out;
+      }
+      .disabled-button {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+      .back-btn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #f2e205;
+        border: none;
+        border-radius: 50%;
+        padding: 10px;
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.3s;
+      }
+
+      .back-btn:hover {
+        transform: scale(1.1);
+        background-color: #2db126;
+      }
+
+      .back-btn svg {
+        fill: white;
+      }
     </style>
-</head>
-<body class="flex flex-col items-center justify-center min-h-screen">
+  </head>
+  <body class="flex flex-col items-center justify-center min-h-screen">
+    <button class="back-btn" onclick="location.href='Menu.html'">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-7 w-7"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 19l-7-7 7-7"
+        />
+      </svg>
+    </button>
     <div class="text-center">
-        <h1 class="text-4xl font-bold mb-2 dynamic-color">Dice Game</h1>
-        <div id="emoji" class="text-4xl mb-4">😐</div>
-        <div class="flex flex-col items-center mb-6">
-            <div id="dice" class="flex items-center justify-center w-48 h-48 text-8xl border-4 border-gray-300 rounded-lg shadow-md cursor-pointer hover:bg-gray-200 transition transform hover:scale-110">
-                <i class="fas fa-dice-one"></i>
-            </div>
-            <input id="diceNumber" type="text" class="w-48 mt-4 p-2 border-2 border-gray-300 rounded-lg text-lg text-center" readonly placeholder="Dice Number">
+      <h1 class="text-4xl font-bold mb-2 dynamic-color">Dice Game</h1>
+      <div id="emoji" class="text-4xl mb-4">😐</div>
+      <div class="flex flex-col items-center mb-6">
+        <div
+          id="dice"
+          class="flex items-center justify-center w-48 h-48 text-8xl border-4 border-gray-300 rounded-lg shadow-md cursor-pointer hover:bg-gray-200 transition transform hover:scale-110"
+        >
+          <i class="fas fa-dice-one"></i>
         </div>
-        <button id="rollButton" class="px-6 py-2 ml-3 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 flex items-center space-x-2">
-            <i class="fas fa-dice" aria-hidden="true"></i>
-            <span>Roll Dice</span>
-            <i class="fas fa-dice" aria-hidden="true"></i>
-        </button>
+        <input
+          id="diceNumber"
+          type="text"
+          class="w-48 mt-4 p-2 border-2 border-gray-300 rounded-lg text-lg text-center"
+          readonly
+          placeholder="Dice Number"
+        />
+      </div>
+      <button
+        id="rollButton"
+        class="px-6 py-2 ml-3 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 flex items-center space-x-2"
+      >
+        <i class="fas fa-dice" aria-hidden="true"></i>
+        <span>Roll Dice</span>
+        <i class="fas fa-dice" aria-hidden="true"></i>
+      </button>
     </div>
     <p
-    style="
-      color: rgb(200, 232, 244);
-      margin-top:1rem;
-      text-align: center;
-      font-size: 1.3rem;
-      padding: 10px;
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman',
-        serif;
-      border-radius: 5px;
-    "
-  >
-    Made with
-    <span
       style="
-        font-weight: 600;
-        font-size: 1.8rem;
-        animation: colorChangebelow 3s infinite;
+        color: rgb(200, 232, 244);
+        margin-top: 1rem;
+        text-align: center;
+        font-size: 1.3rem;
+        padding: 10px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        border-radius: 5px;
       "
-      >Coladco</span
-    ><span style="font-weight: 600; font-size: 1.5rem">🔥</span>
-  </p>
+    >
+      Made with
+      <span
+        style="
+          font-weight: 600;
+          font-size: 1.8rem;
+          animation: colorChangebelow 3s infinite;
+        "
+        >Coladco</span
+      ><span style="font-weight: 600; font-size: 1.5rem">🔥</span>
+    </p>
 
-  <style>
-    @keyframes colorChangebelow {
-      0% {
-        color: #ffffff;
+    <style>
+      @keyframes colorChangebelow {
+        0% {
+          color: #ffffff;
+        }
+        50% {
+          color: #f3b712;
+        }
+        100% {
+          color: #cb571d;
+        }
       }
-      50% {
-        color: #f3b712;
-      }
-      100% {
-        color: #cb571d;
-      }
-    }
-  </style>
+    </style>
     <audio id="diceSound" src="./assets/sounds/dice-roll.mp3"></audio>
 
     <script>
-        const dice = document.getElementById('dice');
-        const rollButton = document.getElementById('rollButton');
-        const diceNumber = document.getElementById('diceNumber');
-        const diceSound = document.getElementById('diceSound');
-        const emoji = document.getElementById('emoji');
+      const dice = document.getElementById("dice");
+      const rollButton = document.getElementById("rollButton");
+      const diceNumber = document.getElementById("diceNumber");
+      const diceSound = document.getElementById("diceSound");
+      const emoji = document.getElementById("emoji");
 
-        const emojis = {
-            1: '😞',
-            2: '😕',
-            3: '😐',
-            4: '😊',
-            5: '😁',
-            6: '😎'
-        };
+      const emojis = {
+        1: "😞",
+        2: "😕",
+        3: "😐",
+        4: "😊",
+        5: "😁",
+        6: "😎",
+      };
 
-        function getRandomDiceNumber() {
-            return Math.floor(Math.random() * 6) + 1;
-        }
+      function getRandomDiceNumber() {
+        return Math.floor(Math.random() * 6) + 1;
+      }
 
-        function updateDiceIcon(number) {
-            const diceIcons = [
-                'fas fa-dice-one',
-                'fas fa-dice-two',
-                'fas fa-dice-three',
-                'fas fa-dice-four',
-                'fas fa-dice-five',
-                'fas fa-dice-six'
-            ];
-            dice.innerHTML = `<i class="${diceIcons[number - 1]}"></i>`;
-        }
+      function updateDiceIcon(number) {
+        const diceIcons = [
+          "fas fa-dice-one",
+          "fas fa-dice-two",
+          "fas fa-dice-three",
+          "fas fa-dice-four",
+          "fas fa-dice-five",
+          "fas fa-dice-six",
+        ];
+        dice.innerHTML = `<i class="${diceIcons[number - 1]}"></i>`;
+      }
 
-        function rollDice() {
-            rollButton.classList.add('disabled-button'); // Disable the button
-            dice.classList.add('rotating');
-            diceSound.currentTime = 0; // Reset the sound
-            diceSound.play();
+      function rollDice() {
+        rollButton.classList.add("disabled-button"); // Disable the button
+        dice.classList.add("rotating");
+        diceSound.currentTime = 0; // Reset the sound
+        diceSound.play();
 
-            setTimeout(() => {
-                const randomNumber = getRandomDiceNumber();
-                updateDiceIcon(randomNumber);
-                diceNumber.value = randomNumber;
-                emoji.innerText = emojis[randomNumber];
-                dice.classList.remove('rotating');
-                rollButton.classList.remove('disabled-button'); // Re-enable the button
-            }, 800); // Wait for 0.8 seconds before displaying the final result
-        }
+        setTimeout(() => {
+          const randomNumber = getRandomDiceNumber();
+          updateDiceIcon(randomNumber);
+          diceNumber.value = randomNumber;
+          emoji.innerText = emojis[randomNumber];
+          dice.classList.remove("rotating");
+          rollButton.classList.remove("disabled-button"); // Re-enable the button
+        }, 800); // Wait for 0.8 seconds before displaying the final result
+      }
 
-        rollButton.addEventListener('click', rollDice);
+      rollButton.addEventListener("click", rollDice);
     </script>
-</body>
+  </body>
 </html>

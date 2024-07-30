@@ -45,9 +45,45 @@
             75% { color: #ff00ff; }
             100% { color: #ff0000; }
         }
+        .back-btn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #2db126;
+        border: none;
+        border-radius: 50%;
+        padding: 10px;
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.3s;
+      }
+
+      .back-btn:hover {
+        transform: scale(1.1);
+        background-color: #f2e205;
+      }
+
+      .back-btn svg {
+        fill: white;
+      }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen flex-col bg-gray-100">
+    <button class="back-btn" onclick="location.href='Menu.html'">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-7 w-7"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
     <h1 class="text-4xl font-bold mb-4">
         <span class="color-change">C</span>
         <span class="color-change">o</span>

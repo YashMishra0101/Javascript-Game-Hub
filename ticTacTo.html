@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="ticTacTo.css" />
+    <link
+      rel="shortcut icon"
+      href="./assects/download (1).png"
+      type="image/x-icon"
+    />
+    <style>
+      .back-btn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-image: linear-gradient(to right, #93fb6a, #cf3755);  
+        border: none;
+        border-radius: 10%;
+        padding: 10px;
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.3s;
+      }
+
+      .back-btn:hover {
+        transform: scale(1.1);
+        background-color: #2db126;
+      }
+
+      .back-button-icon {
+        fill: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <button class="back-btn" onclick="location.href='Menu.html'">
+         <span class="back-button-icon">⬅️</span>
+      </button>
+      <div>
+        <p class="game-info"></p>
+      </div>
+
+      <div class="tic-tac-toe">
+        <div class="box bl bt"></div>
+        <div class="box bt"></div>
+        <div class="box bt br"></div>
+        <div class="box bl"></div>
+        <div class="box"></div>
+        <div class="box br"></div>
+        <div class="box bl bb"></div>
+        <div class="box bb"></div>
+        <div class="box br bb"></div>
+      </div>
+
+      <button class="btn">New Game</button>
+
+      <audio class="gamewin">
+        <source src="./assets/sounds/Coffin music.mp3" />
+      </audio>
+
+      <audio class="tik">
+        <source src="./assets/sounds/ping-82822.mp3" />
+      </audio>
+
+      <audio class="gameover">
+        <source src="./assets/sounds/Funny Sound - Tone ! Hindi.mp3" />
+      </audio>
+      <p
+          style="
+            color: rgb(200, 232, 244);
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 1.3rem;
+            padding: 10px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman',
+              serif;
+            border-radius: 5px;
+          "
+        >
+          Made with
+          <span
+            style="
+              font-weight: 600;
+              font-size: 1.5rem;
+              animation: colorChange 3s infinite;
+            "
+            >Coladco</span
+          ><span style="font-weight: 600; font-size: 1.5rem">🔥</span>
+        </p>
+
+        <style>
+          @keyframes colorChange {
+            0% {
+              color: #ffffff;
+            }
+            50% {
+              color: #d5bb74;
+            }
+            100% {
+              color: #d85615;
+            }
+          }
+        </style>
+    </div>
+        
+    <script src="./Script.js/ticTacTo.js"></script>
+    
+  </body>
+</html>

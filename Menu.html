@@ -10,463 +10,522 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="button.css">
+    <script>
+        const gradients = [
+        { bg: 'linear-gradient(45deg, #ff6f61 25%, #ffcc70 25%, #ffcc70 50%, #ff6f61 50%, #ff6f61 75%, #ffcc70 75%, #ffcc70 100%)', color: '#ff6f61' }, 
+    { bg: 'linear-gradient(45deg, #a1c4fd 25%, #c2e9fb 25%, #c2e9fb 50%, #a1c4fd 50%, #a1c4fd 75%, #c2e9fb 75%, #c2e9fb 100%)', color: '#a1c4fd' },
+    { bg: 'linear-gradient(45deg, #fbc2eb 25%, #a6c0fe 25%, #a6c0fe 50%, #fbc2eb 50%, #fbc2eb 75%, #a6c0fe 75%, #a6c0fe 100%)', color: '#fbc2eb' }, 
+    { bg: 'linear-gradient(135deg, #ff758c 25%, #ff7eb3 25%, #ff7eb3 50%, #ff758c 50%, #ff758c 75%, #ff7eb3 75%, #ff7eb3 100%)', color: '#ff758c' }, 
+    { bg: 'linear-gradient(135deg, #a8c0ff 25%, #3f5efb 25%, #3f5efb 50%, #a8c0ff 50%, #a8c0ff 75%, #3f5efb 75%, #3f5efb 100%)', color: '#a8c0ff' }, 
+    { bg: 'linear-gradient(135deg, #fdc830 25%, #f37335 25%, #f37335 50%, #fdc830 50%, #fdc830 75%, #f37335 75%, #f37335 100%)', color: '#fdc830' }, 
+    { bg: 'linear-gradient(135deg, #ff9a8b 25%, #f1d3d3 25%, #f1d3d3 50%, #ff9a8b 50%, #ff9a8b 75%, #f1d3d3 75%, #f1d3d3 100%)', color: '#ff9a8b' }, 
+    { bg: 'linear-gradient(135deg, #32a852 25%, #b7f8db 25%, #b7f8db 50%, #32a852 50%, #32a852 75%, #b7f8db 75%, #b7f8db 100%)', color: '#32a852' }, 
+    { bg: 'linear-gradient(135deg, #ff0099 25%, #493240 25%, #493240 50%, #ff0099 50%, #ff0099 75%, #493240 75%, #493240 100%)', color: '#ff0099' },
+    { bg: 'linear-gradient(135deg, #f4c2c2 25%, #d3c0eb 25%, #d3c0eb 50%, #f4c2c2 50%, #f4c2c2 75%, #d3c0eb 75%, #d3c0eb 100%)', color: '#f4c2c2' }, 
+    { bg: 'linear-gradient(135deg, #ff6e7f 25%, #bfe9ff 25%, #bfe9ff 50%, #ff6e7f 50%, #ff6e7f 75%, #bfe9ff 75%, #bfe9ff 100%)', color: '#ff6e7f' }, 
+    { bg: 'linear-gradient(135deg, #ab66ff 25%, #c7f8ff 25%, #c7f8ff 50%, #ab66ff 50%, #ab66ff 75%, #c7f8ff 75%, #c7f8ff 100%)', color: '#ab66ff' }, 
+    { bg: 'linear-gradient(45deg, #ffb347 25%, #ffcc33 25%, #ffcc33 50%, #ffb347 50%, #ffb347 75%, #ffcc33 75%, #ffcc33 100%)', color: '#ab66ff' } 
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Signika:wght@300&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
+    
+        ];
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Titillium Web', sans-serif;
-        }
-
-        html,
-        body {
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            height: 100%;
-            width: 100%;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 400;
-            /* background-image: linear-gradient(315deg, #052feb 0%, #77eed8 74%); */
-        }
-        
-         ::selection {
-            color:white;
-            background: black;
-            font-weight: 700;
-        }
-
-        .wrapper {
-            display: table;
-            height: 100%;
-            width: 100%;
-            /* background-image: linear-gradient(315deg, #052feb 0%, #77eed8 74%); */
-        }
-
-        .container-fostrap {
-            display: table-cell;
-            /* background-image: linear-gradient(315deg, #052feb 0%, #77eed8 74%); */
-            padding: 1em;
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        h1.heading {
-            color: #fff;
-            font-size: 1.15em;
-            font-weight: 900;
-            margin: 0 0 0.5em;
-            color: #505050;
-            text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
-                0px 8px 13px rgba(0, 0, 0, 0.1),
-                0px 18px 23px rgba(0, 0, 0, 0.1);
-        }
-
-        @media (min-width: 450px) {
-            h1.heading {
-                font-size: 3.55em;
-            }
-        }
-
-        @media (min-width: 760px) {
-            h1.heading {
-                font-size: 3.05em;
-            }
-        }
-
-        @media (min-width: 900px) {
-            h1.heading {
-                font-size: 3.25em;
-                margin: 0 0 0.3em;
-            }
-        }
-
-        .card {
-            display: block;
-            width: auto;
-            margin: 20px;
-            line-height: 1.42857143;
-            background-color: #fff;
-            border-radius: 2px;
-            min-width: 15rem;
-            min-height: 400px;
-            overflow: hidden;
-            transition: 0.5s ease;
-            animation: start_animation 0.5s ease 1;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-        }
-
-        .cfont {
-            font-family: 'Arimo', sans-serif;
-        }
-
-        .card:hover {
-            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-
-        .img-card {
-            width: 100%;
-            height: 225px;
-            min-width: 14rem;
-            border-top-left-radius: 2px;
-            border-top-right-radius: 2px;
-            display: block;
-            overflow: hidden;
-        }
-
-        .img-card img {
-            margin-top: 15px;
-            width: fit-content;
-            height: 200px;
-            object-fit: cover;
-            transition: all .25s ease;
-            filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
-        }
-
-        .card-content {
-            padding: 15px;
-            text-align: left;
-
-        }
-
-        .card-content p {
-            font-family: 'M PLUS Rounded 1c', sans-serif;
-        }
-
-        .card-title {
-            font-family: 'Signika', sans-serif;
-            margin-top: 0px;
-            font-weight: 600;
-            font-size: 1.65em;
-        }
-
-        .card-title a {
-            color: #000;
-            text-decoration: none !important;
-        }
-
-        .card-read-more {
-  border-top: 1px solid #D4D4D4;
-  border-radius: 1px;
-  font-weight: bold;
-  font-size: 1.1rem;
-  background-color: #ffffff;
-  color: #505050;
-  border: none;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
-  transition: all 0.4s ease-in-out;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  font-family: 'Roboto', sans-serif;
+        function changeBackground() {
+    const randomIndex = Math.floor(Math.random() * gradients.length);
+    const selectedGradient = gradients[randomIndex];
+    document.querySelector('.wrapper').style.background = selectedGradient.bg;
+    document.querySelector('.heading').style.color = selectedGradient.color;
 }
 
-.card-read-more:hover{
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Signika:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+html,
+body {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    transition: background 1s ease;
+    background: linear-gradient(45deg, #a1c4fd 25%, #c2e9fb 25%, #c2e9fb 50%, #a1c4fd 50%, #a1c4fd 75%, #c2e9fb 75%, #c2e9fb 100%);
+   
+}
+
+::selection {
+    color: white;
+    background: black;
+    font-weight: 700;
+}
+
+
+.wrapper {
+    display: table;
+    height: 100%;
+    width: 100%;
+
+    
+}
+
+.container-fostrap {
+    display: table-cell;
+    padding: 1em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+h1.heading {
+    color: #505050;
+    font-size: 1.15em;
+    font-weight: 900;
+    margin: 0 0 0.5em;
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
+        0px 8px 13px rgba(0, 0, 0, 0.1),
+        0px 18px 23px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (min-width: 450px) {
+    h1.heading {
+        font-size: 3.55em;
+    }
+}
+
+@media (min-width: 760px) {
+    h1.heading {
+        font-size: 3.05em;
+    }
+}
+
+@media (min-width: 900px) {
+    h1.heading {
+        font-size: 3.25em;
+        margin: 0 0 0.3em;
+    }
+}
+
+
+.card {
+    display: block;
+    width: auto;
+    margin: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    min-width: 15rem;
+    min-height: 400px;
+    overflow: hidden;
+    transition: 0.5s ease;
+    animation: start_animation 0.5s ease 1;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+}
+
+.img-card {
+    width: 100%;
+    height: 225px;
+    min-width: 14rem;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    display: block;
+    overflow: hidden;
+}
+
+.img-card img {
+    margin-top: 15px;
+    width: fit-content;
+    height: 200px;
+    object-fit: cover;
+    transition: all .25s ease;
+    filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
+}
+
+
+.card-content {
+    padding: 15px;
+    text-align: left;
+}
+
+.card-content p {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.card-title {
+    font-family: 'Signika', sans-serif;
+    margin-top: 0px;
+    font-weight: 600;
+    font-size: 1.65em;
+}
+
+.card-title a {
+    color: #000;
+    text-decoration: none !important;
+}
+
+.card-read-more {
+    border-top: 1px solid #D4D4D4;
+    border-radius: 1px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    background-color: #ffffff;
+    color: #505050;
+    border: none;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+.card-read-more:hover {
     color: #ffffff;
 }
 
 .card-read-more::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb);
-  transition: left 0.4s ease-in-out;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb);
+    transition: left 0.4s ease-in-out;
 }
 
 .card-read-more:hover::before {
-  left: 0;
+    left: 0;
 }
 
 .card-read-more span {
-  position: relative;
-  z-index: 1;
-  color: inherit;
-  text-decoration: none;
+    position: relative;
+    z-index: 1;
+    color: inherit;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
-.card-read-more span:hover {
-  color: #ffffff;
+
+.navbar {
+    background-color: #5b71d5;
+    opacity: 0.9;
+    z-index: 999;
+    width: 100%;
 }
 
-         .card-read-more span {
-            text-decoration: none !important;
-            padding: 10px;
-            font-weight: 600;
-            text-transform: uppercase
-        } 
+.navbar::before {
+    content: "";
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.nav-item a {
+    color: white;
+    font-weight: 500;
+    font-size: 17px;
+    transition: 0.5s ease;
+}
+
+.nav-item a:hover {
+    color: rgb(0, 195, 255);
+    font-weight: bold;
+    transition: 0.5s ease-in-out;
+}
+
+.navbar-brand {
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.nav-item {
+    margin-right: 20px;
+}
+
+/* Counter */
+.counter {
+    width: max-content;
+    margin: 0;
+    padding: 3px;
+    font-weight: bold;
+    border: 1px solid black;
+    font-size: 1.09em;
+    border-radius: 10px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+@media (min-width: 1008px) {
+    .counter {
+        margin-left: 33vw;
+    }
+}
+.spinner-wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background: #000000;
+}
+
+h1.loader {
+    margin: 0;
+    padding: 0;
+    font-family: ‘Arial Narrow’, sans-serif;
+    font-weight: 500;
+    font-size: 1.2em;
+    color: #a3e1f0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1.loader span {
+    position: relative;
+    top: 0.63em;
+    display: inline-block;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: rotateX(-90deg);
+}
+
+.let1 {
+    animation: drop 2.4s ease-in-out infinite;
+    animation-delay: 1.2s;
+}
+
+.let2 {
+    animation: drop 2.4s ease-in-out infinite;
+    animation-delay: 1.3s;
+}
 
 
-        .navbar {
-            background-color:  #5b71d5;
-            opacity: 0.9;
-            z-index: 999;
-            width: 100%;
+@keyframes drop {
+    10% {
+        opacity: 0.5;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    30% {
+        transform: rotateX(0deg);
+    }
+
+    40% {
+        opacity: 0.9;
+    }
+
+    50% {
+        transform: rotateX(0deg);
+        opacity: 0.8;
+    }
+
+    70% {
+        opacity: 0.8;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotateX(90deg);
+        opacity: 0;
+    }
+}
+
+
+.random-gradient-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #5b71d5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background 0.3s ease;
+}
+
+.random-gradient-button:hover {
+    background: #4a5fd1;
+}
+
+
+@keyframes gradientBackground {
+    0% {
+        background: linear-gradient(135deg, #f06, #ffba00);
+    }
+    25% {
+        background: linear-gradient(135deg, #f06, #00f);
+    }
+    50% {
+        background: linear-gradient(135deg, #00f, #0f0);
+    }
+    75% {
+        background: linear-gradient(135deg, #0f0, #ffba00);
+    }
+    100% {
+        background: linear-gradient(135deg, #ffba00, #f06);
+    }
+}
+
+body.gradient-background {
+    animation: gradientBackground 15s ease infinite;
+}
+.back-btn {
+  position: fixed;
+  top: 18px;
+  left: 20px;
+  background: #5b71d5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 3s ease-in-out, transform 0.3s ease-in-out, font-size 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+}
+
+.back-btn:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #ab66ff 25%, #c7f8ff 25%, #c7f8ff 50%, #ab66ff 50%, #ab66ff 75%, #c7f8ff 75%, #c7f8ff 100%);
+  font-weight: 800;
+  font-size: large;
+}
+.heading {
+            font-size: 2em;
+            color: #982121;
+            margin-bottom: 1rem;
         }
 
-        .navbar::before {
-            content: "";
-            position: absolute;
-            top: 0%;
-            bottom: 0%;
-            left: 0;
-            right: 0;
-            z-index: -1;
-        }
-
-        .nav-item a {
-            color: white;
-            font-weight: 500;
-            font-size: 17px;
-            transition: 0.5s ease;
-        }
-
-        .nav-item a:hover {
-             color: rgb(0, 195, 255);
-            font-weight: bold;
-            transition: 0.5s ease-in-out;
-            
-        }
-
-        .navbar-brand {
-            color: white;
-            font-weight: 600;
-            font-size: 20px;
-        }
-
-        .nav-item {
-            margin-right: 20px;
-        }
-        
-
-        /* -------------counter------------------ */
-        .counter {
-            width: max-content;
-            margin: 0;
-            padding: 3px;
-            font-weight: bold;
-            border: 1px solid black;
-            font-size: 1.09em;
-            border-radius: 10px;
-            box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-        }
-
-        @media (min-width: 1008px) {
-            .counter {
-                margin-left: 33vw;
-            }
-
-        }
-
-
-        /* ----------------------PreLoader-------------------------- */
-     
-        .spinner-wrapper {
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 2;
-            background: #000000;
-        }
-
-        h1.loader {
-            margin: 0;
-            padding: 0;
-            font-family: ‘Arial Narrow’, sans-serif;
-            font-weight: 500;
-            font-size: 1.2em;
-            color: #a3e1f0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-        }
-
-        h1.loader span {
-            position: relative;
-            top: 0.63em;
+        .typewriter {
             display: inline-block;
-            text-transform: uppercase;
-            opacity: 0;
-            transform: rotateX(-90deg);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 2s steps(30, end) infinite, blink-caret 0.75s step-end infinite, deleting 4s steps(30, end) 4s infinite;
         }
 
-        .let1 {
-            animation: drop 2.4s ease-in-out infinite;
-            animation-delay: 1.2s;
-        }
-
-        .let2 {
-            animation: drop 2.4s ease-in-out infinite;
-            animation-delay: 1.3s;
-        }
-
-        .let3 {
-            animation: drop 2.4s ease-in-out infinite;
-            animation-delay: 1.4s;
-        }
-
-        .let4 {
-            animation: drop 2.4s ease-in-out infinite;
-            animation-delay: 1.5s;
-
-        }
-
-        .let5 {
-            animation: drop 2.4s ease-in-out infinite;
-            animation-delay: 1.6s;
-        }
-
-        .let6 {
-            animation: drop 2.4s ease-in-out infinite;
-            animation-delay: 1.7s;
-        }
-
-        .let7 {
-            animation: drop 2.4s ease-in-out infinite;
-            animation-delay: 1.8s;
-        }
-        .let8 {
-            animation: drop 2.4s ease-in-out infinite;
-            animation-delay: 2s;
-        }
-        .let9 {
-            animation: drop 2.4s ease-in-out infinite;
-            animation-delay: 2.1s;
-        }
-        .let10 {
-            animation: drop 2.4s ease-in-out infinite;
-            animation-delay: 2.2s;
-        }
-        .let11 {
-            animation: drop 2.4s ease-in-out infinite;
-            animation-delay: 2.3s;
-        }
-        .let12 {
-            animation: drop 2.4s ease-in-out infinite;
-            animation-delay: 2.4s;
-        }
-
-        .letspace{
-            animation: drop 2.4s ease-in-out infinite;
-            animation-delay: 1.9s;
-        }
-
-        @keyframes drop {
-            10% {
-                opacity: 0.5;
+        @keyframes typing {
+            from {
+                width: 0;
             }
-
-            20% {
-                opacity: 1;
-                top: 3.78em;
-                transform: rotateX(-360deg);
-            }
-
-            80% {
-                opacity: 1;
-                top: 3.78em;
-                transform: rotateX(-360deg);
-            }
-
-            90% {
-                opacity: 0.5;
-            }
-
-            100% {
-                opacity: 0;
-                top: 6.94em
+            to {
+                width: 100%;
             }
         }
-        
-        
-         /* ------------------------------Scroll Bar----------------------------- */
-        ::-webkit-scrollbar {
-            width: 0.8em;
+
+        @keyframes deleting {
+            from {
+                width: 100%;
+            }
+            to {
+                width: 0;
+            }
         }
 
-        ::-webkit-scrollbar-track {
-
-            background-image: linear-gradient(315deg, #10ea8f 0%, #7ddff8 74%);
-    
+        @keyframes blink-caret {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: #333;
+            }
         }
+        .back-btn {
+  position: fixed;
+  top: 18px;
+  left: 20px;
+  background: #5b71d5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 3s ease-in-out, transform 0.3s ease-in-out, font-size 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+}
 
-        ::-webkit-scrollbar-thumb {
-            background-color: rgba(129, 54, 54, 0.4);
-            transition: 0.7s ease-in-out;
-            border-radius: 10px;
-        }
+.back-btn:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #ab66ff 25%, #c7f8ff 25%, #c7f8ff 50%, #ab66ff 50%, #ab66ff 75%, #c7f8ff 75%, #c7f8ff 100%);
+  font-weight: 800;
+  font-size: large;
+}
 
-        ::-webkit-scrollbar-thumb:hover {
-            background-color: rgba(78, 200, 34, 0.6);
-            
-        }
         
     </style>
+  
+  
+      
 </head>
 
 <body>
 
     <section class="wrapper">
+        <button class="back-btn" onclick="location.href='index.html'">
+            Back
+          </button>
+          
+         
         <div class="container-fostrap">
             <div>
+                
                 <h1 class="heading">
-                    Code With Fun 😉
+                    <span class="typewriter">Code With Fun 😉</span>
                 </h1>
-                <!-- <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-                    <div class="container">
-                        <a class="navbar-brand" href="#">Coladco</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Exit</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div> -->
+
             <div class="content">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" data-aos="zoom-in-down">
                             <div class="card">
                                 <a class="img-card">
-                                    <img src="Image/qrcode.jpg" style="filter: none; width: 400px;" />
+                                    <img src="./assets/Image/qrcode.jpg" style="filter: none; width: 400px;" />
                                 </a>
                                 <div class="card-content">
                                     <h4 class="card-title">
                                         QR Code Generator
                                     </h4>
                                     <p class="cfont">
-                                        Generate and download QR codes effortlessly with our user-friendly QR code generator tool 🖨️.
+                                        Generate and download QR codes effortlessly with our user-friendly QR code generator tool 📱
                                         <br>
                                         <br>
                                     </p>
@@ -483,14 +542,14 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" data-aos="zoom-in-down">
                             <div class="card">
                                 <a class="img-card">
-                                    <img src="Image/rgb.png" />
+                                    <img src="./assets/Image/rgb.png" />
                                 </a>
                                 <div class="card-content">
                                     <h4 class="card-title">
                                         Random Color Picker
                                     </h4>
                                     <p class="cfont">
-                                        Customize your website’s background with colors or gradients. Copy CSS easily 🎨.
+                                        Customize your website’s background with colors or gradients. Copy CSS easily 🎨
                                     </p>
                                 </div>
                                 <a  href="Color_1.html">
@@ -505,14 +564,14 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" data-aos="zoom-in-down">
                             <div class="card">
                                 <a class="img-card">
-                                    <img src="Image/password.png" />
+                                    <img src="./assets/Image/password.png" />
                                 </a>
                                 <div class="card-content">
                                     <h4 class="card-title">
                                         Password Generator
                                     </h4>
                                     <p class="">
-                                      Generate and copy strong, secure passwords effortlessly with our easy-to-use tool 🔐 .
+                                      Generate and copy strong, secure passwords effortlessly with our easy-to-use tool 🔐 
                                         <br>
                                     </p>
                                 </div>
@@ -529,7 +588,7 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" data-aos="zoom-in-down">
                             <div class="card">
                                 <a class="img-card">
-                                    <img src="Image/coins.png" />
+                                    <img src="./assets/Image/coins.png" />
 
                                 </a>
                                 <div class="card-content">
@@ -538,7 +597,7 @@
                                     </h4>
                                     <p class="">
                                         No coins in your pocket? With our online coin flipper tool you can instantly
-                                        flip coin.
+                                        flip coin 🪙
                                         <br>
                                     </p>
                                 </div>
@@ -556,14 +615,14 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" data-aos="zoom-in-down">
                             <div class="card">
                                 <a class="img-card">
-                                    <img src="Image/dice.png" />
+                                    <img src="./assets/Image/dice.png" />
                                 </a>
                                 <div class="card-content">
                                     <h4 class="card-title">
                                         Dice Number
                                     </h4>
                                     <p class="">
-                                        Lost your dice? Don't worry , Roll a virtual dice, generating random numbers and emojis 🎲.
+                                        Lost your dice? Don't worry , Roll a virtual dice, generating random numbers and emojis 🎲
                                         <br>
                                         <br>
                                     </p>
@@ -580,14 +639,14 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" data-aos="zoom-in-down">
                             <div class="card">
                                 <a class="img-card">
-                                    <img src="Image/hanging-bulb.png" />
+                                    <img src="./assets/Image/hanging-bulb.png" />
                                 </a>
                                 <div class="card-content">
                                     <h4 class="card-title">
                                         Random Led Glow
                                     </h4>
                                     <p class="">
-                                        random color blinking light for fun
+                                        Random LED Glow , Control lights, switch on , off and adjust glow intensity 💡
                                         <br>
                                         <br>
                                     </p>
@@ -604,7 +663,7 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" data-aos="zoom-in-down">
                             <div class="card">
                                 <a class="img-card">
-                                    <img src="Image/choice.jpg" style="filter: none;"/>
+                                    <img src="./assets/Image/choice.jpg" style="filter: none;"/>
                                 </a>
                                 <div class="card-content">
                                     <h4 class="card-title">
@@ -613,11 +672,11 @@
                                     </h4>
                                     <p class="">
                                         Have a tough choice to make? use the random choice generator make a quick
-                                        decision for you
+                                        decision for you 🤔
                                         <br>
                                     </p>
                                 </div>
-                                <a  href="Choice_Picker.html">
+                                <a  href="./Choice_Picker.html">
                                     <div class="card-read-more">
                                         <span class="btn btn-link btn-block">
                                             Start
@@ -631,14 +690,14 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" data-aos="zoom-in-down">
                             <div class="card">
                                 <a class="img-card">
-                                    <img src="Image/video.jpg" />
+                                    <img src="./assets/Image/video.jpg" />
                                 </a>
                                 <div class="card-content">
                                     <h4 class="card-title">
                                         Random Video Generator
                                     </h4>
                                     <p class="cfont">
-                                        To randomly generate video without ad
+                                        Generate random YouTube videos, enjoy continuous playback, and explore new content 📺
 
                                     </p>
                                 </div>
@@ -656,19 +715,18 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" data-aos="zoom-in-down">
                             <div class="card">
                                 <a class="img-card">
-                                    <img src="Image/grp.jpg" style="filter: none;"/>
+                                    <img src="./assets/Image/Tictac.jpeg" style="filter: none;"/>
                                 </a>
                                 <div class="card-content">
                                     <h4 class="card-title">
-                                        Random Group Generate
-
+                                        Tic Tac Toe
                                     </h4>
                                     <p class="cfont">
-                                        Make N teams from your M elements Input.
+                                        Tic Tac Toe with animations and cool sounds for an exciting two-player experience 🎮
                                         <br>
                                     </p>
                                 </div>
-                                <a  href="random_grp.html">
+                                <a  href="./ticTacTo.html">
                                     <div class="card-read-more">
                                         <span class="btn btn-link btn-block">
                                             Start
@@ -678,43 +736,7 @@
                             </div>
                         </div>
                         
-                         <!-- <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 d-block" data-aos="zoom-in-down">
-                            <div class="card">
-                                <a class="img-card">
-                                    <img src="Image/guess.jpg" style="filter: none;"/>
-                                </a>
-                                <div class="card-content">
-                                    <h4 class="card-title">
-                                        Guess The Word
-
-                                    </h4>
-                                    <p class="cfont">
-                                        You Have to guess a word From a given random hint
-                                        <br>
-                                    </p>
-                                </div>
-                                <a  href="guess_word.html">
-                                    <div class="card-read-more">
-                                        <span class="btn btn-link btn-block">
-                                            Start
-                                        </span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    
-                <!-- <div class="col-xs-12 col-sm-12 col-md-12 counter d-block">  
-                        <center>
-                            &nbsp;
-                            &nbsp;&nbsp;
-
-                            <img src="https://hitwebcounter.com/counter/counter.php?page=7890853&style=0006&nbdigits=5&type=ip&initCount=13"
-                                title="Visitors " Alt="visitors" style="background-color: transparent; color: black;"
-                                border="2" />&#x27A1; &#10084;&#65039; Total Visitors &#10084;&#65039;</a>
-                        </center>
-                    </div> -->
+                        
                 </div>
             </div>
         </div>
@@ -742,6 +764,9 @@
             hidePreloader();
         });
     </script>
+     <button class="random-gradient-button" onclick="changeBackground()">Change Background</button>
+     
+    
 </body>
 
 </html>

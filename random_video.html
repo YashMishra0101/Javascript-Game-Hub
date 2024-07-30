@@ -1,92 +1,182 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Random Video Generator</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="icon" href="Image/logo.png">
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="Image/logo.png" />
     <style>
-        /* Custom CSS */
-        body {
-            font-family: 'Nunito Sans', sans-serif;
-        }
+      body {
+        font-family: "Nunito Sans", sans-serif;
+      }
 
-        .video-box {
-            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease-in-out;
-        }
+      .video-box {
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+          rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+      }
 
-        .video-box:hover {
-            transform: scale(1.05);
-        }
+      .video-box:hover {
+        transform: scale(1.01);
+      }
 
-        .generate-btn {
-            transition: background-color 0.3s ease;
-        }
+      .generate-btn {
+        transition: background-color 0.3s ease;
+      }
 
-        .generate-btn:hover {
-            background-color: #2563eb;
-        }
+      .generate-btn:hover {
+        background-color: #2563eb;
+      }
+
+      .back-btn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #f2e205;
+        border: none;
+        border-radius: 50%;
+        padding: 10px;
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.3s;
+      }
+
+      .back-btn:hover {
+        transform: scale(1.1);
+        background-color: #2db126;
+      }
+
+      .back-btn svg {
+        fill: white;
+      }
     </style>
-</head>
-
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="container mx-auto p-6 bg-white rounded-lg shadow-lg">
-        <h1 class="text-4xl font-bold text-center mb-6" data-aos="fade-down">Random Video Generator</h1>
-
-        <div class="flex justify-center mb-6" data-aos="fade-right">
-            <div class="flex space-x-4">
-                <label class="inline-flex items-center">
-                    <input type="radio" class="form-radio" name="videoType" value="bollywood" checked>
-                    <span class="ml-2">Bollywood Songs</span>
-                </label>
-                <label class="inline-flex items-center">
-                    <input type="radio" class="form-radio" name="videoType" value="hollywood">
-                    <span class="ml-2">Hollywood Songs</span>
-                </label>
-            </div>
+  </head>
+  <body
+    class="bg-gray-100 flex items-center justify-center min-h-screen overflow-hidden"
+  >
+    <div class="container mx-auto p-6 bg-white rounded-lg shadow-lg relative">
+      <button class="back-btn" onclick="location.href='Menu.html'">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-7 w-7"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+      <h1 class="text-4xl font-bold text-center mb-6" data-aos="fade-down">
+        Random Video Generator
+      </h1>
+      <div class="video-box bg-gray-800 p-4 mb-6" data-aos="zoom-in">
+        <div class="aspect-w-16 aspect-h-9">
+          <iframe
+            id="videoPlayer"
+            height="315"
+            src="https://www.youtube.com/embed/mvyWjY8lpuM?si=RyNmYWfBlNmDczbD"
+            title="YouTube video player"
+            frameborder="0"
+            class="w-full overflow-hidden"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
         </div>
+      </div>
+      <div class="text-center">
+        <button
+          class="generate-btn bg-blue-500 text-white font-bold py-2 px-4 rounded"
+          onclick="startVideoLoop()"
+          data-aos="fade-up"
+        >
+          Generate Video
+        </button>
+      </div>
+      <p
+        style="
+          color: rgb(60, 218, 49);
+          text-align: center;
+          font-size: 1.3rem;
+          margin-top: 1rem;
+          padding: 10px;
+          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+          border-radius: 5px;
+        "
+      >
+        Made with
+        <span
+          style="
+            font-weight: 600;
+            font-size: 1.5rem;
+            animation: colorChange 3s infinite;
+          "
+          >Coladco</span
+        ><span style="font-weight: 600; font-size: 1.5rem">🔥</span>
+      </p>
 
-        <div class="video-box bg-gray-800 p-4 mb-6" data-aos="zoom-in">
-            <div class="aspect-w-16 aspect-h-9">
-                <iframe id="videoFrame" class="w-full h-full" src="" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <div class="text-center">
-            <button class="generate-btn bg-blue-500 text-white font-bold py-2 px-4 rounded" onclick="getRandomVideo()" data-aos="fade-up">Generate Video</button>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-        });
-
-        const videoLinks = {
-            bollywood: [
-                'https://www.youtube.com/embed/XLqmL9cPN1E?si=FXPM4bNoHuEhEQkd'
-            ],
-            hollywood: [
-                'https://www.youtube.com/embed/3tmd-ClpJxA',
-                'https://www.youtube.com/embed/L_jWHffIx5E'
-            ]
-        };
-
-        function getRandomVideo() {
-            const videoType = document.querySelector('input[name="videoType"]:checked').value;
-            const videos = videoLinks[videoType];
-            const randomIndex = Math.floor(Math.random() * videos.length);
-            const randomVideoUrl = videos[randomIndex];
-            document.getElementById('videoFrame').src = randomVideoUrl;
+      <style>
+        @keyframes colorChange {
+          0% {
+            color: #15a4b4;
+          }
+          50% {
+            color: #f39c12;
+          }
+          100% {
+            color: #ff2121;
+          }
         }
-    </script>
-</body>
+      </style>
+    </div>
+    <script>
+      const videoLinks = [
+        "https://www.youtube.com/embed/mvyWjY8lpuM?si=RyNmYWfBlNmDczbD",
+        "https://www.youtube.com/embed/TvRLJ0JAbeQ?si=UGJqWqvOpQ80ziLn",
+        "https://www.youtube.com/embed/6DPHwN3MlSU?si=VJISrln0E5FNN6Z6",
+        "https://www.youtube.com/embed/3vgvD9hsnBc?si=Uqvo6qIu0HEIAgdt",
+        "https://www.youtube.com/embed/c5_FLscZfCc?si=bn3SJh6sAB7os5QF",
+        "https://www.youtube.com/embed/WVDNqc3TUVQ?si=CcdCmDLF-b_yeQm1",
+        "https://www.youtube.com/embed/C6W3mvdP-as?si=A0_D72Bfwui6n4sy",
+        "https://www.youtube.com/embed/OD6b3ofuFgY?si=X7BiPyJZmCduirdE",
+        "https://www.youtube.com/embed/VcefyDYW-VE?si=PI7z5SdQyX7Xud_o",
+        "https://www.youtube.com/embed/E_SbwSe15y0?si=u7t4rGBQV0ATQ7",
+        "https://www.youtube.com/embed/pUoDgPCjaSQ?si=wRxmyUuvwn8kwoKh",
+        "https://www.youtube.com/embed/2pvp3LGDnyo?si=U1CNImJq6qDlbj4c",
+        "https://www.youtube.com/embed/WfDFWLZgQwE?si=sKuAJD_dmNagprZs",
+        "https://www.youtube.com/embed/LypLGlec1Ok?si=67gYGkMu9GebECqH",
+        "https://www.youtube.com/embed/vsax8o_X660?si=1585P9pZY7SupFQ7",
+        "https://www.youtube.com/embed/4AjTTb8-hY8?si=5MrKHV30IQGUFPTW",
+        "https://www.youtube.com/embed/yiVlmSKyHWI?si=AOmSR2O5SISx_HUK",
+        "https://www.youtube.com/embed/sR5AhKTUXEw?si=cjxnFLI51hOs0GPR",
+      ];
 
+      let currentIndex = 0;
+
+      function playVideo(index) {
+        const videoPlayer = document.getElementById("videoPlayer");
+        videoPlayer.src = videoLinks[index];
+
+        videoPlayer.onended = function () {
+          currentIndex = (currentIndex + 1) % videoLinks.length;
+          playVideo(currentIndex);
+        };
+      }
+
+      function startVideoLoop() {
+        currentIndex = (currentIndex + 1) % videoLinks.length;
+        playVideo(currentIndex);
+      }
+    </script>
+  </body>
 </html>
